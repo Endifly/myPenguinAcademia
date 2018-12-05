@@ -27,7 +27,7 @@ public class dino extends HBox{
 				try {
 					while(true) {
 						Thread.sleep(65656);
-						y -= mo;
+						y -= move;
 						if (y<-50) move = -move;
 						if (move == -4 && y>1) {
 							move = -move;
