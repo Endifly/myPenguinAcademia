@@ -26,7 +26,7 @@ public class dino extends HBox{
 			Thread j2 = new Thread(() -> {
 				try {
 					while(true) {
-						Thread.sleep(646843);
+						Thread.sleep(8888);
 						y -= move;
 						if (y<-50) move = -move;
 						if (move == -4 && y>1) {
