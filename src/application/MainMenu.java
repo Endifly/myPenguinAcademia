@@ -1,11 +1,7 @@
 package application;
 
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class MainMenu extends VBox{
 	private Button start;

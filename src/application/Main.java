@@ -2,8 +2,6 @@ package application;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -32,7 +30,7 @@ public class Main extends Application{
 		eventManager.setMainMenuExit(menu.getExit());
 		
 		//declare scene
-		Scene sceneFirst = new Scene(rootMenu,600,300);
+		Scene sceneFirst = new Scene(rootMenu,util.reference.WIDTH,util.reference.HIGH);
 		//Scene sceneBattleStage = new 
 		
 		//stage setting

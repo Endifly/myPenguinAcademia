@@ -5,9 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 
@@ -28,9 +26,10 @@ public class BattleStage extends VBox{
 		
 		
 		player1 = new Penguin();
-		penguin1 = new Canvas(600, 300);
+		penguin1 = new Canvas(600, 600);
 		GraphicsContext penguin1GC = penguin1.getGraphicsContext2D();
-		penguin1GC.drawImage(this.LoadImage("dinosaur.jpg"), 0, 0);
+		penguin1GC.drawImage(this.LoadImage("untitled.png"), 0, 0);
+		penguin1GC.drawImage(this.LoadImage("untitled.png"), 152, 118);
 		
 		status.getChildren().addAll(score,HP);
 		this.getChildren().addAll(status,penguin1);

@@ -20,7 +20,7 @@ public class EventManager {
 	}
 	public void setMainMenuStart(Button mainMenuButton) {
 		mainMenuButton.setOnAction(e ->{
-			primary.setScene(new Scene(battle, 1000, 400));
+			primary.setScene(new Scene(battle, util.reference.WIDTH, util.reference.HIGH));
 			primary.setTitle("Battle");
 		});
 	}
