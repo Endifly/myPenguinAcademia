@@ -8,17 +8,19 @@ import util.reference;
 public class MainMenu extends VBox{
 	private Button start;
 	private Button exit;
+	private Button leaderBoard;
 	
 	public MainMenu() {
 		super(10);
 		this.setAlignment(Pos.CENTER);
 		start = new Button("Play");
+		leaderBoard = new Button("Leader Board");
 		exit = new Button("Exit");
 		
-		start.setAlignment(Pos.CENTER);
 		start.setPrefWidth(util.reference.PREFWIDTH);
+		leaderBoard.setPrefWidth(util.reference.PREFWIDTH);
 		exit.setPrefWidth(util.reference.PREFWIDTH);
-		this.getChildren().addAll(start,exit);
+		this.getChildren().addAll(start,leaderBoard,exit);
 	}
 
 	public Button getStart() {
