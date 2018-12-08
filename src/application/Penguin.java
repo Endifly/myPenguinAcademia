@@ -6,8 +6,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import util.controlable;
 
-public class Penguin extends StackPane{
+public class Penguin extends StackPane implements controlable{
 	private int level;
 	private int maxHP;
 	private int hp;
@@ -49,5 +50,25 @@ public class Penguin extends StackPane{
 	}
 	private Image LoadImage(String imagePath) {
 		return new Image(ClassLoader.getSystemResource(imagePath).toString());
+	}
+	@Override
+	public void up() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void down() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void right() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void left() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -13,10 +13,16 @@ public class PauseStage extends VBox{
 	public PauseStage() {
 		super(10);
 		this.setAlignment(Pos.CENTER);
+		
 		resume = new Button("RESUME");
+		resume.setPrefWidth(util.reference.PREFWIDTH);
 		backtoMain = new Button("BACK TO MAINMENU");
+		backtoMain.setPrefWidth(util.reference.PREFWIDTH);
 		restart = new Button("RESTART");
+		restart.setPrefWidth(util.reference.PREFWIDTH);
 		exit = new Button("EXIT");
+		exit.setPrefWidth(util.reference.PREFWIDTH);
+		
 		this.getChildren().addAll(resume,backtoMain,restart,exit);
 	}
 
