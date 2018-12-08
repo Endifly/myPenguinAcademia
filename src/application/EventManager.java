@@ -7,10 +7,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class EventManager {
-	private Stage primary;
-	private Scene battleScene;
-	private Scene menuScene;
-	private Scene pauseScene;
+	private static Stage primary;
+	private static Scene battleScene;
+	private static Scene menuScene;
+	private static Scene pauseScene;
+	private static String battlePress;
 	
 	public EventManager(Scene menu , Scene battle , Scene pause , Stage primary) {
 		// TODO Auto-generated constructor stub
@@ -34,9 +35,10 @@ public class EventManager {
 	}
 	
 	//battleStage setting
-	public void setToPauseStage(Scene battle) {
+	public void setBattleKeyPress(Scene battle) {
 		battle.setOnKeyPressed((KeyEvent event) -> {
 			String new_code = event.getCode().toString();
+			battlePress = new_code;
 			if (new_code.equals("ESCAPE")) {
 				primary.setScene(pauseScene);
 				primary.setTitle("pause");
@@ -62,4 +64,23 @@ public class EventManager {
 			primary.close();
 		});
 	}
+	
+	//getter
+	public static Stage getPrimary() {
+		return primary;
+	}
+
+	public static Scene getBattleScene() {
+		return battleScene;
+	}
+
+	public static Scene getMenuScene() {
+		return menuScene;
+	}
+
+	public static Scene getPauseScene() {
+		return pauseScene;
+	}
+	
+	
 }

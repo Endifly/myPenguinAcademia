@@ -1,8 +1,10 @@
 package application;
 
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 
 public class Penguin extends StackPane{
@@ -10,6 +12,8 @@ public class Penguin extends StackPane{
 	private int maxHP;
 	private int hp;
 	private int h,k;
+	private int speedX , speedY;
+	private Scene battleControl;
 	private Bullet bullet;
 	private String name;
 	private String bulletType;
@@ -24,6 +28,8 @@ public class Penguin extends StackPane{
 		this.bullet = new Bullet();
 		penguinPane = gc;
 		penguinPane.drawImage(this.LoadImage("Untitled.png"), h, k);
+		
+		
 	}
 	public void fire() {
 		

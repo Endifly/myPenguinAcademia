@@ -37,7 +37,7 @@ public class Main extends Application{
 		eventManager = new EventManager(menuScene, battleScene, pauseScene, primaryStage);
 		eventManager.setMainMenuStart(menu.getStart());
 		eventManager.setMainMenuExit(menu.getExit());
-		eventManager.setToPauseStage(battleScene);
+		eventManager.setBattleKeyPress(battleScene);
 		eventManager.setPauseStageResume(pauseStage.getResume());
 		eventManager.setPauseStageBacktoMenu(pauseStage.getBacktoMain());
 		eventManager.setPauseStageExit(pauseStage.getExit());
