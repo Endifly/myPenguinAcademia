@@ -1,6 +1,8 @@
 package application;
 
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 
 public class Penguin extends StackPane{
@@ -11,20 +13,37 @@ public class Penguin extends StackPane{
 	private Bullet bullet;
 	private String name;
 	private String bulletType;
-	private Canvas penguinPane;
+	private GraphicsContext penguinPane;
 	
-	public Penguin() {
+	public Penguin(GraphicsContext gc) {
 		super();
-		penguinPane = new Canvas(900, 400);
+		//penguinPane = new Canvas(900, 400);
 		this.level = 1;
 		this.maxHP = 100;
 		this.hp = 100;
 		this.bullet = new Bullet();
+		//penguinPane = gc;
+		//gc.drawImage(this.LoadImage("Untitled.png"), h, k);
 	}
 	public void fire() {
 		
 	}
 	public void update() {
 		
+	}
+	public int getH() {
+		return h;
+	}
+	public int getK() {
+		return k;
+	}
+	public void setH(int h) {
+		this.h = h;
+	}
+	public void setK(int k) {
+		this.k = k;
+	}
+	private Image LoadImage(String imagePath) {
+		return new Image(ClassLoader.getSystemResource(imagePath).toString());
 	}
 }
