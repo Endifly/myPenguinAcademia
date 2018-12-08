@@ -19,6 +19,8 @@ public class Penguin extends StackPane implements controlable{
 	private String name;
 	private String bulletType;
 	private GraphicsContext penguinPane;
+	private static Thread control;
+	private static boolean controlRun = true;
 	
 	public Penguin(GraphicsContext gc) {
 		super();
@@ -28,7 +30,28 @@ public class Penguin extends StackPane implements controlable{
 		this.bullet = new Bullet();
 		penguinPane = gc;
 		penguinPane.drawImage(this.LoadImage("Untitled.png"), h, k);
-		
+		control = new Thread(() -> {
+			try {
+				while(controlRun) {
+					Thread.sleep(16);
+					if (EventManager.UP == true) this.up();
+					if (EventManager.DOWN == true) this.down();
+					if (EventManager.RIGHT == true) this.right();
+					if (EventManager.LEFT == true) this.left();
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		control.start();
+	}
+	public Penguin(GraphicsContext gc , int maxHP , int speedX , int speedY) {
+		super();
+		this.maxHP = maxHP;
+		this.hp = maxHP;
+		this.speedX = speedX;
+		this.speedY = speedY;
 	}
 	public void fire() {
 		
@@ -48,27 +71,40 @@ public class Penguin extends StackPane implements controlable{
 	public void setK(int k) {
 		this.k = k;
 	}
+	public static void stop() {
+		controlRun = false;
+	}
 	private Image LoadImage(String imagePath) {
 		return new Image(ClassLoader.getSystemResource(imagePath).toString());
 	}
 	@Override
 	public void up() {
 		// TODO Auto-generated method stub
-		
+		penguinPane.clearRect(h, k, 152, 118);
+		k = k-speedY-1;
+		penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
 	}
 	@Override
 	public void down() {
 		// TODO Auto-generated method stub
-		
+		penguinPane.clearRect(h, k, 152, 118);
+		k = k+speedY+1;
+		penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
 	}
 	@Override
 	public void right() {
 		// TODO Auto-generated method stub
+		penguinPane.clearRect(h, k, 152, 118);
+		h = h+speedX+1;
+		penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
 		
 	}
 	@Override
 	public void left() {
 		// TODO Auto-generated method stub
+		penguinPane.clearRect(h, k, 152, 118);
+		h = h-speedX-1;
+		penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
 		
 	}
 }

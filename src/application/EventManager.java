@@ -6,13 +6,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import util.controlable;
 
 public class EventManager {
 	private static Stage PRIMARY;
 	private static Scene BATTLESCENE;
 	private static Scene MENUSCENE;
 	private static Scene PAUSESCENE;
-	private static boolean UP,DOWN,LEFT,RIGHT,ESCAPE,Z,X,C,V;
+	public static boolean UP,DOWN,LEFT,RIGHT,ESCAPE,Z,X,C,V ;
 	
 	public EventManager(Scene menu , Scene battle , Scene pause , Stage primary) {
 		// TODO Auto-generated constructor stub
@@ -31,6 +32,7 @@ public class EventManager {
 	}
 	public void setMainMenuExit(Button mainMenuExit) {
 		mainMenuExit.setOnAction(e -> {
+			Penguin.stop();
 			PRIMARY.close();
 		});
 	}
@@ -39,7 +41,7 @@ public class EventManager {
 	public void setBattleKeyPress(Scene battle) {
 		battle.setOnKeyPressed((KeyEvent event) -> {
 			String new_code = event.getCode().toString();
-			System.out.println(new_code);
+			//System.out.println(new_code);
 			if (event.getCode() == KeyCode.UP) UP = true;
 			if (event.getCode() == KeyCode.DOWN) DOWN = true;
 			if (event.getCode() == KeyCode.RIGHT) RIGHT = true;
@@ -80,6 +82,7 @@ public class EventManager {
 	}
 	public void setPauseStageExit(Button pauseStageExit) {
 		pauseStageExit.setOnAction(e -> {
+			Penguin.stop();
 			PRIMARY.close();
 		});
 	}
