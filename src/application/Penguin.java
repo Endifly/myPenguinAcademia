@@ -81,21 +81,21 @@ public class Penguin extends StackPane implements controlable{
 	public void up() {
 		// TODO Auto-generated method stub
 		penguinPane.clearRect(h, k, 152, 118);
-		k = k-speedY-1;
+		k = k-speedY-5;
 		penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
 	}
 	@Override
 	public void down() {
 		// TODO Auto-generated method stub
 		penguinPane.clearRect(h, k, 152, 118);
-		k = k+speedY+1;
+		k = k+speedY+5;
 		penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
 	}
 	@Override
 	public void right() {
 		// TODO Auto-generated method stub
 		penguinPane.clearRect(h, k, 152, 118);
-		h = h+speedX+1;
+		h = h+speedX+5;
 		penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
 		
 	}
@@ -103,7 +103,7 @@ public class Penguin extends StackPane implements controlable{
 	public void left() {
 		// TODO Auto-generated method stub
 		penguinPane.clearRect(h, k, 152, 118);
-		h = h-speedX-1;
+		h = h-speedX-5;
 		penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
 		
 	}
