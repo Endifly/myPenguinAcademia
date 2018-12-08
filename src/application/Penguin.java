@@ -21,14 +21,12 @@ public class Penguin extends StackPane{
 	
 	public Penguin(GraphicsContext gc) {
 		super();
-		//penguinPane = new Canvas(900, 400);
 		this.level = 1;
 		this.maxHP = 100;
 		this.hp = 100;
 		this.bullet = new Bullet();
 		penguinPane = gc;
 		penguinPane.drawImage(this.LoadImage("Untitled.png"), h, k);
-		
 		
 	}
 	public void fire() {
