@@ -22,8 +22,8 @@ public class Penguin extends StackPane{
 		this.maxHP = 100;
 		this.hp = 100;
 		this.bullet = new Bullet();
-		//penguinPane = gc;
-		//gc.drawImage(this.LoadImage("Untitled.png"), h, k);
+		penguinPane = gc;
+		penguinPane.drawImage(this.LoadImage("Untitled.png"), h, k);
 	}
 	public void fire() {
 		

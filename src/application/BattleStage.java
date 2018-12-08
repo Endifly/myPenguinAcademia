@@ -17,8 +17,7 @@ public class BattleStage extends VBox{
 	private ProgressBar HP;
 	private Label score;
 	private Penguin player1;
-	private Canvas penguin1;
-	private Button back;
+	private Canvas battleStageCanvas;
 	private int x = 4*152;
 	private int y = 4*118;
 	
@@ -32,23 +31,22 @@ public class BattleStage extends VBox{
 		score = new Label("0");
 		score.setPrefWidth(util.reference.PREFWIDTH);
 		HP.setPrefWidth(util.reference.PREFWIDTH);
-		back = new Button("Back");
-		back.setPrefWidth(util.reference.PREFWIDTH);
-		back.setOpacity(0);
 		
-		penguin1 = new Canvas(util.reference.WIDTH, util.reference.HIGH-60);
-		GraphicsContext penguin1GC = penguin1.getGraphicsContext2D();
-		//player1 = new Penguin(penguin1GC);
+		battleStageCanvas = new Canvas(util.reference.WIDTH, util.reference.HIGH-60);
+		GraphicsContext battleStageGC = battleStageCanvas.getGraphicsContext2D();
+		player1 = new Penguin(battleStageGC);
 		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 0, 0);
 		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 152, 118);
 		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 2*152, 2*118);
 		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 3*152, 3*118);
-			penguin1GC.drawImage(this.LoadImage("untitled.png"), 4*152, 4*118);
+			//penguin1GC.drawImage(this.LoadImage("untitled.png"), 4*152, 4*118);
 		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 5*152, 5*118);
 		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 6*152, 4*118);
 		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 7*152, 3*118);
 		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 8*152, 2*118);
 		
+		/*	
+		//controler test
 		this.setOnKeyPressed((KeyEvent event) -> {
 			String new_code = event.getCode().toString();
 			System.out.println(new_code);
@@ -69,8 +67,9 @@ public class BattleStage extends VBox{
 				penguin1GC.drawImage(this.LoadImage("untitled.png"), x, y++);
 			}
 		});
+		*/
 		status.getChildren().addAll(score,HP);
-		this.getChildren().addAll(status,penguin1,back);
+		this.getChildren().addAll(status,battleStageCanvas);
 		
 	}
 	public ProgressBar getHP() {
@@ -92,10 +91,10 @@ public class BattleStage extends VBox{
 		this.player1 = player1;
 	}
 	public Canvas getPenguin1() {
-		return penguin1;
+		return battleStageCanvas;
 	}
 	public void setPenguin1(Canvas penguin1) {
-		this.penguin1 = penguin1;
+		this.battleStageCanvas = penguin1;
 	}
 	private Image LoadImage(String imagePath) {
 		return new Image(ClassLoader.getSystemResource(imagePath).toString());

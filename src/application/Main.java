@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application{
 	private static MainMenu menu;
 	private static BattleStage battleStage;
+	private static PauseStage pauseStage;
 	private EventManager eventManager;
 	@Override
 	public void start(Stage primaryStage)  {
@@ -22,20 +23,26 @@ public class Main extends Application{
 		//declare UI
 		menu = new MainMenu();
 		battleStage = new BattleStage();
+		pauseStage = new PauseStage();
 		rootMenu.getChildren().addAll(menu);
 		rootBattleStage.getChildren().addAll(battleStage);
-		
-		//button setting
-		eventManager = new EventManager(rootMenu, rootBattleStage, rootPauseStage, primaryStage);
-		eventManager.setMainMenuStart(menu.getStart());
-		eventManager.setMainMenuExit(menu.getExit());
+		rootPauseStage.getChildren().addAll(pauseStage);
 		
 		//declare scene
-		Scene sceneFirst = new Scene(rootMenu,util.reference.WIDTH,util.reference.HIGH);
-		//Scene sceneBattleStage = new 
+		Scene menuScene = new Scene(rootMenu,util.reference.WIDTH,util.reference.HIGH);
+		Scene battleScene = new Scene(rootBattleStage , util.reference.WIDTH , util.reference.HIGH);
+		Scene pauseScene = new Scene(rootPauseStage , util.reference.WIDTH , util.reference.HIGH);
+		
+		//event setting
+		eventManager = new EventManager(menuScene, battleScene, pauseScene, primaryStage);
+		eventManager.setMainMenuStart(menu.getStart());
+		eventManager.setMainMenuExit(menu.getExit());
+		eventManager.setToPauseStage(battleScene);
+		eventManager.setPauseStageResume(pauseStage.getResume());
+		eventManager.setPauseStageBacktoMenu(pauseStage.getBacktoMain());
 		
 		//stage setting
-		primaryStage.setScene(sceneFirst);
+		primaryStage.setScene(menuScene);
 		primaryStage.setResizable(false);
 		primaryStage.show();
 		
