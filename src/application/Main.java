@@ -40,6 +40,7 @@ public class Main extends Application{
 		eventManager.setToPauseStage(battleScene);
 		eventManager.setPauseStageResume(pauseStage.getResume());
 		eventManager.setPauseStageBacktoMenu(pauseStage.getBacktoMain());
+		eventManager.setPauseStageExit(pauseStage.getExit());
 		
 		//stage setting
 		primaryStage.setScene(menuScene);

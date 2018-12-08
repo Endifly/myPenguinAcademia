@@ -19,6 +19,8 @@ public class EventManager {
 		this.battleScene = battle;
 		this.pauseScene = pause;
 	}
+	
+	//mainStage setting
 	public void setMainMenuStart(Button mainMenuStart) {
 		mainMenuStart.setOnAction(e ->{
 			primary.setScene(battleScene);
@@ -30,6 +32,8 @@ public class EventManager {
 			primary.close();
 		});
 	}
+	
+	//battleStage setting
 	public void setToPauseStage(Scene battle) {
 		battle.setOnKeyPressed((KeyEvent event) -> {
 			String new_code = event.getCode().toString();
@@ -44,11 +48,18 @@ public class EventManager {
 	public void setPauseStageResume(Button pauseStageResume) {
 		pauseStageResume.setOnAction(e -> {
 			primary.setScene(battleScene);
+			primary.setTitle("Battle");
 		});
 	}
 	public void setPauseStageBacktoMenu(Button pauseStageBacktoMenu) {
 		pauseStageBacktoMenu.setOnAction(e -> {
 			primary.setScene(menuScene);
+			primary.setTitle("menu");
+		});
+	}
+	public void setPauseStageExit(Button pauseStageExit) {
+		pauseStageExit.setOnAction(e -> {
+			primary.close();
 		});
 	}
 }
