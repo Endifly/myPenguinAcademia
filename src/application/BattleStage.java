@@ -45,6 +45,30 @@ public class BattleStage extends VBox{
 		this.getChildren().addAll(status,penguin1);
 		
 	}
+	public ProgressBar getHP() {
+		return HP;
+	}
+	public void setHP(ProgressBar hP) {
+		HP = hP;
+	}
+	public Label getScore() {
+		return score;
+	}
+	public void setScore(Label score) {
+		this.score = score;
+	}
+	public Penguin getPlayer1() {
+		return player1;
+	}
+	public void setPlayer1(Penguin player1) {
+		this.player1 = player1;
+	}
+	public Canvas getPenguin1() {
+		return penguin1;
+	}
+	public void setPenguin1(Canvas penguin1) {
+		this.penguin1 = penguin1;
+	}
 	private Image LoadImage(String imagePath) {
 		return new Image(ClassLoader.getSystemResource(imagePath).toString());
 	}
