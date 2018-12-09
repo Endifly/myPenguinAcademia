@@ -23,6 +23,7 @@ public class Penguin extends StackPane implements controlable , fireable{
 	private GraphicsContext penguinPane;
 	private static Thread control;
 	private static boolean controlRun = true;
+	private boolean zTriggerd = false;
 	
 	public Penguin(GraphicsContext gc) {
 		super();
@@ -137,7 +138,13 @@ public class Penguin extends StackPane implements controlable , fireable{
 					if (EventManager.DOWN == true) this.down();
 					if (EventManager.RIGHT == true) this.right();
 					if (EventManager.LEFT == true) this.left();
-					if (EventManager.Z == true) this.fire();
+					if (EventManager.Z == true && !zTriggerd) {
+						this.fire();
+						zTriggerd = true;
+					}
+					if (EventManager.Z == false) {
+						zTriggerd = false;
+					}
 				}
 
 			} catch (Exception e) {
