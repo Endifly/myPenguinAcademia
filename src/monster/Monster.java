@@ -6,7 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Monster {
+public abstract class Monster {
 	private int hp;
 	private int atk;
 	private String imagepath;
