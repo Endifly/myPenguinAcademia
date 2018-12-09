@@ -4,6 +4,7 @@ import util.reference;
 import monster.*;
 
 import java.util.List;
+import java.beans.DefaultPersistenceDelegate;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -91,8 +92,14 @@ public class BattleStage extends VBox{
 			try {
 				while(true) {
 					Thread.sleep(16);
-					for (Bullet e : bullets) {
-						e.draw();
+					System.out.println( bullets.size());
+					for (int i = bullets.size()-1 ; i >= 0 ; i--) {
+						bullets.get(i).draw();
+						if (bullets.get(i).getK() < -80) {
+							System.out.println("removed");
+							bullets.get(i).remove();
+							bullets.remove(i);
+						}
 					}
 				}
 

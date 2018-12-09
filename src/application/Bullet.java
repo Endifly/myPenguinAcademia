@@ -41,9 +41,11 @@ public class Bullet {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
+				//bulletGC.clearRect(h, k, 84, 67);
 				bulletGC.clearRect(h, k, 84, 67);
 				k = k-10;
 				bulletGC.drawImage(this.LoadImage(imagePath), h, k);
+					
 			}
 			private Image LoadImage(String imagePath) {
 				return new Image(ClassLoader.getSystemResource(imagePath).toString());
@@ -53,10 +55,20 @@ public class Bullet {
 	public String getImagePath() {
 		return imagePath;
 	}
+	public void remove() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				//bulletGC.clearRect(h, k, 84, 67);
+				bulletGC.clearRect(h, k, 84, 67);
+			}
+		});
+	}
 	public int getH() {
 		return h;
 	}
-	public int getY() {
+	public int getK() {
 		return k;
 	}
 	//public void isIn(bullet)
