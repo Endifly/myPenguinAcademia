@@ -6,7 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public abstract class Monster {
+public class Monster {
 	private int hp;
 	private int atk;
 	private String imagepath;
@@ -17,11 +17,12 @@ public abstract class Monster {
 	private Canvas bulletPicture;
 	private GraphicsContext monsterGC;
 	
-	public Monster() {
+	public Monster(GraphicsContext gc) {
 		this.hp = 1;
 		this.atk = 1;
 		this.imagepath = "";
 		this.score = 100;
+		monsterGC = gc;
 	}
 	public Monster(int hp,int atk,String imagepath,int score,int m,int c,double speedMon,double speed,GraphicsContext monsterGC) {
 		this.hp = hp;
@@ -43,8 +44,12 @@ public abstract class Monster {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				monsterGC.clearRect(h, k, 84, 67);
-				monsterGC.drawImage(this.LoadImage(imagepath), -100+h, -100+k);
+				if (k < 600) {
+					monsterGC.clearRect(h, k, 84, 67);
+					k = k+10;
+					h = h+10;
+					monsterGC.drawImage(this.LoadImage("bullet-default.png"), h, k);
+				}
 			}
 			private Image LoadImage(String imagePath) {
 				return new Image(ClassLoader.getSystemResource(imagePath).toString());

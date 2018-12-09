@@ -30,6 +30,8 @@ public class BattleStage extends VBox{
 	private static List<Bullet> bullets;
 	private static List<Monster> monster;
 	private  static Thread bulletsManager;
+	private Thread sekMonster;
+	private static Thread monsterManager;
 	
 	public BattleStage() {
 		super(10);
@@ -50,6 +52,34 @@ public class BattleStage extends VBox{
 		
 		this.bulletsManagerThread();
 		
+		//monster manager
+		sekMonster = new Thread(() -> {
+			monster.clear();
+			System.out.println("sekMonster");
+			for (int i=0 ; i<8 ; i++) {
+				monster.add(new Monster(battleStageGC));
+			}
+			//System.out.println(monster.size());
+			monsterManager.start();
+		});
+		monsterManager = new Thread(() -> {
+			try {
+				System.out.println("monsterManager");
+				while(true) {
+					Thread.sleep(100);
+					for (int i = monster.size()-1 ; i >= 0 ; i--) {
+						System.out.println(i);
+						monster.get(i).draw();
+					}
+				}
+				//sekMonster.start();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		
+		sekMonster.start();
 		status.getChildren().addAll(score,HP);
 		this.getChildren().addAll(status,battleStageCanvas);
 		
@@ -109,6 +139,33 @@ public class BattleStage extends VBox{
 		});
 		bulletsManager.start();
 	} 
+	/*private void sekMonster() {
+		sekMonster = new Thread(() -> {
+			monster.clear();
+			for (int i=0 ; i<8 ; i++) {
+				monster.add(new Monster());
+			}
+		});
+		monsterManager.start();
+	}
+	private void monsterManagerThread() {
+		monsterManager = new Thread(() -> {
+			try {
+				while(true) {
+					Thread.sleep(16);
+					for (int i = monster.size()-1 ; i >= 0 ; i--) {
+						monster.get(i).draw();
+
+					}
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		sekMonster.start();
+	} */
+
 	public static void stop() {
 		bulletsManager.interrupt();
 		bullets.clear();
