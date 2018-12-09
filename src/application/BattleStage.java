@@ -159,6 +159,13 @@ public class BattleStage extends VBox{
 	public static void startMonster() {
 		monsterManager.start();
 	}
+
+	public static void pauseMonster()  {
+		monsterManager.suspend();
+	}
+	public static void resumeMonster() {
+		monsterManager.resume();
+	}
 	public static void stop() {
 		bulletsManager.interrupt();
 		monsterManager.interrupt();

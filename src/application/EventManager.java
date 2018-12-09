@@ -78,6 +78,7 @@ public class EventManager {
 			if (event.getCode() == KeyCode.C) C = true;
 			if (event.getCode() == KeyCode.V) V = true;
 			if (event.getCode() == KeyCode.ESCAPE) {
+				BattleStage.pauseMonster();
 				PRIMARY.setScene(PAUSESCENE);
 				PRIMARY.setTitle("pause");
 			}
@@ -97,6 +98,7 @@ public class EventManager {
 	//pauseStage setting
 	public void setPauseStageResume(Button pauseStageResume) {
 		pauseStageResume.setOnAction(e -> {
+			BattleStage.resumeMonster();
 			PRIMARY.setScene(BATTLESCENE);
 			PRIMARY.setTitle("Battle");
 		});
