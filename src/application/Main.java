@@ -20,6 +20,7 @@ public class Main extends Application{
 		StackPane rootBattleStage = new StackPane();
 		StackPane rootPauseStage = new StackPane();
 		rootMenu.setId("pane");
+		rootPauseStage.setId("pausePane");
 		
 		//declare UI
 		menu = new MainMenu();
@@ -34,7 +35,7 @@ public class Main extends Application{
 		Scene battleScene = new Scene(rootBattleStage , util.reference.WIDTH , util.reference.HIGH);
 		Scene pauseScene = new Scene(rootPauseStage , util.reference.WIDTH , util.reference.HIGH);
 		menuScene.getStylesheets().addAll(this.getClass().getResource("menu.css").toExternalForm());
-		//menuScene.getStylesheets().addAll(this.getClass().getResource("menu.css").toExternalForm());
+		pauseScene.getStylesheets().addAll(this.getClass().getResource("pause.css").toExternalForm());
 
 		
 		//event setting

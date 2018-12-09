@@ -77,7 +77,7 @@ public class BattleStage extends VBox{
 			}
 		});
 		
-		sekMonster.start();
+		//sekMonster.start();
 		status.getChildren().addAll(score,HP);
 		this.getChildren().addAll(status,battleStageCanvas);
 		
@@ -137,32 +137,6 @@ public class BattleStage extends VBox{
 		});
 		bulletsManager.start();
 	} 
-	/*private void sekMonster() {
-		sekMonster = new Thread(() -> {
-			monster.clear();
-			for (int i=0 ; i<8 ; i++) {
-				monster.add(new Monster());
-			}
-		});
-		monsterManager.start();
-	}
-	private void monsterManagerThread() {
-		monsterManager = new Thread(() -> {
-			try {
-				while(true) {
-					Thread.sleep(16);
-					for (int i = monster.size()-1 ; i >= 0 ; i--) {
-						monster.get(i).draw();
-
-					}
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-		sekMonster.start();
-	} */
 
 	public static void stop() {
 		bulletsManager.interrupt();
