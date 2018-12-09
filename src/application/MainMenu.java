@@ -1,44 +1,49 @@
 package application;
 
+import javafx.animation.ScaleTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.transform.Scale;
+import javafx.util.Duration;
 import util.reference;
 
-public class MainMenu extends VBox{
+public class MainMenu extends Pane{
 	private Button start;
 	private Button exit;
 	private Button leaderBoard;
-	private Circle sun;
+	private static ScaleTransition scale;
+	private static Sun sun;
 	
 	public MainMenu() {
-		super(30);
-		this.setAlignment(Pos.BOTTOM_LEFT);
+		super();
+		//this.setAlignment(Pos.BOTTOM_LEFT);
 		
 		start = new Button("Play");
 		leaderBoard = new Button("Leader Board");
 		exit = new Button("Exit");
-		Button non = new Button("");
-		sun = new Circle();
-		sun.setRadius(30);
-		sun.setFill(Color.ORANGE);
-		sun.setLayoutX(1000);
-		sun.setLayoutY(50);
 		
-		start.setPrefWidth(600);
+		start.setPrefWidth(util.reference.PREFWIDTH);
 		start.setPrefHeight(util.reference.PREFHIGH);
+		start.setLayoutX(250);
+		start.setLayoutY(320);
 		start.setOpacity(0);
-		leaderBoard.setPrefWidth(600);
+		leaderBoard.setPrefWidth(util.reference.PREFWIDTH);
 		leaderBoard.setPrefHeight(util.reference.PREFHIGH);
+		leaderBoard.setLayoutX(250);
+		leaderBoard.setLayoutY(440);
 		leaderBoard.setOpacity(0);
-		exit.setPrefWidth(600);
+		exit.setPrefWidth(util.reference.PREFWIDTH);
 		exit.setPrefHeight(util.reference.PREFHIGH);
+		exit.setLayoutX(250);
+		exit.setLayoutY(550);
 		exit.setOpacity(0);
-		non.setPrefHeight(util.reference.PREFHIGH);
-		non.setOpacity(0);
-		this.getChildren().addAll(start,leaderBoard,exit,non);
+		
+		sun = new Sun();
+		this.getChildren().addAll(start,leaderBoard,exit,sun.sun);
 	}
 
 	public Button getStart() {
@@ -48,5 +53,9 @@ public class MainMenu extends VBox{
 	public Button getExit() {
 		return exit;
 	}
+	public static void raiseTheSun() {
+		sun.raiseTheSun();
+	}
 	
+
 }

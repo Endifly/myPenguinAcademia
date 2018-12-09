@@ -47,6 +47,7 @@ public class BattleStage extends VBox{
 		bullets = new CopyOnWriteArrayList<Bullet>();
 		monster = new CopyOnWriteArrayList<Monster>();
 		
+		
 		battleStageCanvas = new Canvas(util.reference.WIDTH, util.reference.HIGH-60);
 		battleStageGC = battleStageCanvas.getGraphicsContext2D();
 		player1 = new Penguin(battleStageGC);

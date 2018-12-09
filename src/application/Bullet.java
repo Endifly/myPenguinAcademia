@@ -3,6 +3,7 @@ package application;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 
 public class Bullet {
@@ -26,6 +27,7 @@ public class Bullet {
 		bulletGC = gc;
 		//bulletGC.drawImage(this.LoadImage(imagePath), h, k);
 		BattleStage.addBullet(this);
+		//bulletGC.fillRect(0, 0, util.reference.WIDTH, util.reference.HIGH);
 	}
 	private Image LoadImage(String imagePath) {
 		return new Image(ClassLoader.getSystemResource(imagePath).toString());
@@ -41,7 +43,7 @@ public class Bullet {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				bulletGC.clearRect(h, k, 84, 67);
+				bulletGC.clearRect(h, k, this.LoadImage(imagePath).getWidth(), this.LoadImage(imagePath).getHeight());
 				k = k-10;
 				bulletGC.drawImage(this.LoadImage(imagePath), h, k);
 			}

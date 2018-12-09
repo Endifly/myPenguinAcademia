@@ -11,6 +11,7 @@ public class Main extends Application{
 	private static BattleStage battleStage;
 	private static PauseStage pauseStage;
 	private EventManager eventManager;
+	public static Sun sun;
 	@Override
 	public void start(Stage primaryStage)  {
 		// TODO Auto-generated method stub
@@ -29,6 +30,7 @@ public class Main extends Application{
 		rootMenu.getChildren().addAll(menu);
 		rootBattleStage.getChildren().addAll(battleStage);
 		rootPauseStage.getChildren().addAll(pauseStage);
+		sun = new Sun();
 		
 		//declare scene
 		Scene menuScene = new Scene(rootMenu,util.reference.WIDTH,util.reference.HIGH);

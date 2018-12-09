@@ -156,7 +156,7 @@ public class Penguin extends StackPane implements controlable , fireable{
 	@Override
 	public void fire() {
 		// TODO Auto-generated method stub
-		new Bullet("whatThis", 10, "bullet-default.png", 1, 0, this , penguinPane);
+		new Bullet("whatThis", 10, "bullet-transperent.jpg", 1, 0, this , penguinPane);
 		
 	}
 }
