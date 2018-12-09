@@ -35,6 +35,7 @@ public class EventManager {
 	public void setMainMenuExit(Button mainMenuExit) {
 		mainMenuExit.setOnAction(e -> {
 			Penguin.stop();
+			BattleStage.stop();
 			PRIMARY.close();
 		});
 	}

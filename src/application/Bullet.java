@@ -59,5 +59,6 @@ public class Bullet {
 	public int getY() {
 		return k;
 	}
+	//public void isIn(bullet)
 	
 }

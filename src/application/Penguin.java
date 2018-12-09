@@ -145,7 +145,6 @@ public class Penguin extends StackPane implements controlable , fireable{
 			}
 		});
 		control.start();
-		
 	}
 	@Override
 	public void fire() {

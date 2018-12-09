@@ -25,7 +25,7 @@ public class BattleStage extends VBox{
 	private int x = 4*152;
 	private int y = 4*118;
 	private static List<Bullet> bullets;
-	private  Thread bulletsManager;
+	private  static Thread bulletsManager;
 	
 	public BattleStage() {
 		super(10);
@@ -95,4 +95,8 @@ public class BattleStage extends VBox{
 		});
 		bulletsManager.start();
 	} 
+	public static void stop() {
+		bulletsManager.interrupt();
+		bullets.clear();
+	}
 }
