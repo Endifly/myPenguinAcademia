@@ -6,4 +6,5 @@ public interface controlable {
 	public void down();
 	public void right();
 	public void left();
+	public void controlThread();
 }

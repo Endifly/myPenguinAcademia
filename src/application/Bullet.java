@@ -1,23 +1,30 @@
 package application;
 
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Bullet {
 	private String name;
 	private String imagePath;
 	private int damage;
+	private int h,k;
 	private int m,c;
 	private double speed;
 	private Canvas bulletPicture;
+	private GraphicsContext bulletGC;
 	
-	public Bullet(String name, int damage , String imagePath , int m , int c,Penguin body) {
+	public Bullet(String name, int damage , String imagePath , int m , int c,Penguin firer , GraphicsContext gc) {
 		this.name = name;
 		this.damage = damage;
 		this.imagePath = imagePath;
+		this.h = firer.getH();
+		this.k = firer.getK();
 		this.m = m;
 		this.c = c;
-		bulletPicture = new Canvas(util.reference.WIDTH, 600);
+		bulletPicture = new Canvas(90, 90);
+		bulletGC = gc;
+		bulletGC.drawImage(this.LoadImage(imagePath), h, k);
 	}
 	private Image LoadImage(String imagePath) {
 		return new Image(ClassLoader.getSystemResource(imagePath).toString());

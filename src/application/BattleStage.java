@@ -2,6 +2,8 @@ package application;
 
 import util.reference;
 
+import java.util.ArrayList;
+
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -20,6 +22,8 @@ public class BattleStage extends VBox{
 	private Canvas battleStageCanvas;
 	private int x = 4*152;
 	private int y = 4*118;
+	private static ArrayList<Bullet> bullets;
+	private static Thread bulletsManager;
 	
 	public BattleStage() {
 		super(10);
@@ -35,39 +39,7 @@ public class BattleStage extends VBox{
 		battleStageCanvas = new Canvas(util.reference.WIDTH, util.reference.HIGH-60);
 		GraphicsContext battleStageGC = battleStageCanvas.getGraphicsContext2D();
 		player1 = new Penguin(battleStageGC);
-		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 0, 0);
-		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 152, 118);
-		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 2*152, 2*118);
-		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 3*152, 3*118);
-			//penguin1GC.drawImage(this.LoadImage("untitled.png"), 4*152, 4*118);
-		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 5*152, 5*118);
-		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 6*152, 4*118);
-		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 7*152, 3*118);
-		//penguin1GC.drawImage(this.LoadImage("untitled.png"), 8*152, 2*118);
 		
-		/*	
-		//controler test
-		this.setOnKeyPressed((KeyEvent event) -> {
-			String new_code = event.getCode().toString();
-			System.out.println(new_code);
-			if (new_code.equals("RIGHT")) {
-				penguin1GC.clearRect(0, 0, util.reference.WIDTH, util.reference.HIGH);
-				penguin1GC.drawImage(this.LoadImage("untitled.png"), x++, y);
-			}
-			if (new_code.equals("LEFT")) {
-				penguin1GC.clearRect(0, 0, util.reference.WIDTH, util.reference.HIGH);
-				penguin1GC.drawImage(this.LoadImage("untitled.png"), x--, y);
-			}
-			if (new_code.equals("UP")) {
-				penguin1GC.clearRect(0, 0, util.reference.WIDTH, util.reference.HIGH);
-				penguin1GC.drawImage(this.LoadImage("untitled.png"), x, y--);
-			}
-			if (new_code.equals("DOWN")) {
-				penguin1GC.clearRect(0, 0, util.reference.WIDTH, util.reference.HIGH);
-				penguin1GC.drawImage(this.LoadImage("untitled.png"), x, y++);
-			}
-		});
-		*/
 		status.getChildren().addAll(score,HP);
 		this.getChildren().addAll(status,battleStageCanvas);
 		
@@ -95,6 +67,9 @@ public class BattleStage extends VBox{
 	}
 	public void setPenguin1(Canvas penguin1) {
 		this.battleStageCanvas = penguin1;
+	}
+	public static void addBullet(Bullet e) {
+		bullets.add(e);
 	}
 	private Image LoadImage(String imagePath) {
 		return new Image(ClassLoader.getSystemResource(imagePath).toString());

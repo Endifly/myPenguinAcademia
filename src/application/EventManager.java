@@ -13,6 +13,8 @@ public class EventManager {
 	private static Scene BATTLESCENE;
 	private static Scene MENUSCENE;
 	private static Scene PAUSESCENE;
+	
+	//detect all used key true if it was pressed , false for not.
 	public static boolean UP,DOWN,LEFT,RIGHT,ESCAPE,Z,X,C,V ;
 	
 	public EventManager(Scene menu , Scene battle , Scene pause , Stage primary) {
