@@ -49,7 +49,7 @@ public class Monster {
 				if (k < 600) {
 					monsterGC.clearRect(h, k, 84, 67);
 					k = k+10;
-					h = h+10;
+					h = h-10;
 					monsterGC.drawImage(this.LoadImage("bullet-default.png"), h, k);
 				}
 			}

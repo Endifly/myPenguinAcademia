@@ -30,6 +30,7 @@ public class BattleStage extends VBox{
 	private  static Thread bulletsManager;
 	private static Thread sekMonster;
 	private static Thread monsterManager;
+	private GraphicsContext battleStageGC;
 	
 	public BattleStage() {
 		super(10);
@@ -46,44 +47,30 @@ public class BattleStage extends VBox{
 		
 		
 		battleStageCanvas = new Canvas(util.reference.WIDTH, util.reference.HIGH-60);
-		GraphicsContext battleStageGC = battleStageCanvas.getGraphicsContext2D();
+		battleStageGC = battleStageCanvas.getGraphicsContext2D();
 		player1 = new Penguin(battleStageGC);
 		
 		this.bulletsManagerThread();
 		
 		//monster manager
-		sekMonster = new Thread(() -> {
-			monster.clear();
-			System.out.println("sekMonster");
-			int x = 0;
-			int y = 0;
-			for (int i=0 ; i<8 ; i++) {
-				monster.add(new Monster(battleStageGC,x,y));
-				x +=100;
-				y +=100;
-				System.out.println(x);
-			}
-			//System.out.println(monster.size());
-			monsterManager.start();
-		});
 		monsterManager = new Thread(() -> {
 			try {
-				System.out.println("monsterManager");
-				while(true) {
-					Thread.sleep(100);
-					for (int i = monster.size()-1 ; i >= 0 ; i--) {
-						System.out.println(i);
-						monster.get(i).draw();
+				while (true) {
+					this.sekMonster(2);
+					System.out.println("monsterManager");
+					while(!EventManager.C) {
+						Thread.sleep(100);
+						for (int i = monster.size()-1 ; i >= 0 ; i--) {
+							System.out.println(i);
+							monster.get(i).draw();
+						}
 					}
 				}
-				//sekMonster.start();
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
-		
-		//sekMonster.start();
+		monsterManager.start();
 		status.getChildren().addAll(score,HP);
 		this.getChildren().addAll(status,battleStageCanvas);
 		
@@ -143,7 +130,29 @@ public class BattleStage extends VBox{
 		});
 		bulletsManager.start();
 	} 
-
+	public void sekMonster(int p) {
+		monster.clear();
+		if(p ==1) {
+			int x1 = 0;
+			int y1 = 0;
+			for(int i =0 ;i<8;i++) {
+				monster.add(new Monster(this.battleStageGC,x1,y1));
+				x1 -=100;
+				y1 -=100;
+			}
+		}
+		else if(p==2) {
+			int x2 = util.reference.WIDTH;
+			int y2 = 0;
+			for(int i =0 ;i<8;i++) {
+				monster.add(new Monster(this.battleStageGC,x2,y2));
+				x2 +=100;
+				y2 -=100;
+			}
+		
+			//System.out.println(x);
+		}
+	}
 	public static void stop() {
 		bulletsManager.interrupt();
 		sekMonster.interrupt();
