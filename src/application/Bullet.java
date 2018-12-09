@@ -12,7 +12,6 @@ public class Bullet {
 	private int h,k;
 	private int m,c;
 	private double speed;
-	private Canvas bulletPicture;
 	private GraphicsContext bulletGC;
 	
 	public Bullet(String name, int damage , String imagePath , int m , int c,Penguin firer , GraphicsContext gc) {
@@ -23,7 +22,7 @@ public class Bullet {
 		this.k = firer.getK();
 		this.m = m;
 		this.c = c;
-		bulletPicture = new Canvas(90, 90);
+		//bulletPicture = new Canvas(90, 90);
 		bulletGC = gc;
 		//bulletGC.drawImage(this.LoadImage(imagePath), h, k);
 		BattleStage.addBullet(this);

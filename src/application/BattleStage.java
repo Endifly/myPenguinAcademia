@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import monster.Monster;
 
 public class BattleStage extends VBox{
 	private ProgressBar HP;

@@ -86,6 +86,7 @@ public class EventManager {
 	public void setPauseStageExit(Button pauseStageExit) {
 		pauseStageExit.setOnAction(e -> {
 			Penguin.stop();
+			BattleStage.stop();
 			PRIMARY.close();
 		});
 	}
