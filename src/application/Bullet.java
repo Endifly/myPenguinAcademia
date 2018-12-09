@@ -42,6 +42,7 @@ public class Bullet {
 			public void run() {
 				// TODO Auto-generated method stub
 				bulletGC.clearRect(h, k, 84, 67);
+				k = k-10;
 				bulletGC.drawImage(this.LoadImage(imagePath), h, k);
 			}
 			private Image LoadImage(String imagePath) {
