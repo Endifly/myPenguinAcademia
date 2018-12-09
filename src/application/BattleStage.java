@@ -1,6 +1,7 @@
 package application;
 
 import util.reference;
+import monster.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class BattleStage extends VBox{
 	private int x = 4*152;
 	private int y = 4*118;
 	private static List<Bullet> bullets;
+	private static List<Monster> monster;
 	private  static Thread bulletsManager;
 	
 	public BattleStage() {
@@ -39,6 +41,7 @@ public class BattleStage extends VBox{
 		score.setPrefWidth(util.reference.PREFWIDTH);
 		HP.setPrefWidth(util.reference.PREFWIDTH);
 		bullets = new CopyOnWriteArrayList<Bullet>();
+		monster = new CopyOnWriteArrayList<Monster>();
 		
 		battleStageCanvas = new Canvas(util.reference.WIDTH, util.reference.HIGH-60);
 		GraphicsContext battleStageGC = battleStageCanvas.getGraphicsContext2D();
@@ -76,6 +79,9 @@ public class BattleStage extends VBox{
 	}
 	public static void addBullet(Bullet e) {
 		bullets.add(e);
+	}
+	public static void addMonster(Monster e) {
+		monster.add(e);
 	}
 	private Image LoadImage(String imagePath) {
 		return new Image(ClassLoader.getSystemResource(imagePath).toString());
