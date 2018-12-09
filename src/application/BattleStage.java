@@ -54,8 +54,13 @@ public class BattleStage extends VBox{
 		sekMonster = new Thread(() -> {
 			monster.clear();
 			System.out.println("sekMonster");
+			int x = 0;
+			int y = 0;
 			for (int i=0 ; i<8 ; i++) {
-				monster.add(new Monster(battleStageGC));
+				monster.add(new Monster(battleStageGC,x,y));
+				x +=100;
+				y +=100;
+				System.out.println(x);
 			}
 			//System.out.println(monster.size());
 			monsterManager.start();
