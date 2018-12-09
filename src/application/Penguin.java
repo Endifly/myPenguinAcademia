@@ -1,5 +1,6 @@
 package application;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -62,31 +63,67 @@ public class Penguin extends StackPane implements controlable , fireable{
 
 	public void up() {
 		// TODO Auto-generated method stub
-		penguinPane.clearRect(h, k, 152, 118);
-		k = k-speedY-5;
-		penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				penguinPane.clearRect(h, k, 152, 118);
+				k = k-speedY-5;
+				penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+			}
+			private Image LoadImage(String imagePath) {
+				return new Image(ClassLoader.getSystemResource(imagePath).toString());
+			}
+		});
 	}
 	@Override
 	public void down() {
 		// TODO Auto-generated method stub
-		penguinPane.clearRect(h, k, 152, 118);
-		k = k+speedY+5;
-		penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				penguinPane.clearRect(h, k, 152, 118);
+				k = k+speedY+5;
+				penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+			}
+			private Image LoadImage(String imagePath) {
+				return new Image(ClassLoader.getSystemResource(imagePath).toString());
+			}
+		});
 	}
 	@Override
 	public void right() {
 		// TODO Auto-generated method stub
-		penguinPane.clearRect(h, k, 152, 118);
-		h = h+speedX+5;
-		penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				penguinPane.clearRect(h, k, 152, 118);
+				h = h+speedX+5;
+				penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+			}
+			private Image LoadImage(String imagePath) {
+				return new Image(ClassLoader.getSystemResource(imagePath).toString());
+			}
+		});
 		
 	}
 	@Override
 	public void left() {
 		// TODO Auto-generated method stub
-		penguinPane.clearRect(h, k, 152, 118);
-		h = h-speedX-5;
-		penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				penguinPane.clearRect(h, k, 152, 118);
+				h = h-speedX-5;
+				penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+			}
+			private Image LoadImage(String imagePath) {
+				return new Image(ClassLoader.getSystemResource(imagePath).toString());
+			}
+		});
 		
 	}
 	@Override

@@ -2,7 +2,9 @@ package application;
 
 import util.reference;
 
+import java.util.List;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
@@ -22,8 +24,8 @@ public class BattleStage extends VBox{
 	private Canvas battleStageCanvas;
 	private int x = 4*152;
 	private int y = 4*118;
-	private static ArrayList<Bullet> bullets;
-	private static Thread bulletsManager;
+	private static List<Bullet> bullets;
+	private  Thread bulletsManager;
 	
 	public BattleStage() {
 		super(10);
@@ -35,10 +37,13 @@ public class BattleStage extends VBox{
 		score = new Label("0");
 		score.setPrefWidth(util.reference.PREFWIDTH);
 		HP.setPrefWidth(util.reference.PREFWIDTH);
+		bullets = new CopyOnWriteArrayList<Bullet>();
 		
 		battleStageCanvas = new Canvas(util.reference.WIDTH, util.reference.HIGH-60);
 		GraphicsContext battleStageGC = battleStageCanvas.getGraphicsContext2D();
 		player1 = new Penguin(battleStageGC);
+		
+		this.bulletsManagerThread();
 		
 		status.getChildren().addAll(score,HP);
 		this.getChildren().addAll(status,battleStageCanvas);
@@ -74,4 +79,20 @@ public class BattleStage extends VBox{
 	private Image LoadImage(String imagePath) {
 		return new Image(ClassLoader.getSystemResource(imagePath).toString());
 	}
+	private void bulletsManagerThread() {
+		bulletsManager = new Thread(() -> {
+			try {
+				while(true) {
+					Thread.sleep(16);
+					for (Bullet e : bullets) {
+						e.draw();
+					}
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		bulletsManager.start();
+	} 
 }
