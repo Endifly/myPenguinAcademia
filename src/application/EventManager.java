@@ -1,5 +1,8 @@
 package application;
 
+import java.util.concurrent.TimeUnit;
+
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
@@ -28,8 +31,28 @@ public class EventManager {
 	//mainStage setting
 	public void setMainMenuStart(Button mainMenuStart) {
 		mainMenuStart.setOnAction(e ->{
-			PRIMARY.setScene(BATTLESCENE);
-			PRIMARY.setTitle("Battle");
+			MainMenu.raiseTheSun();
+			Thread wait = new Thread(()->  {
+				try {
+					Thread.sleep(1100);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Platform.runLater(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						PRIMARY.setScene(BATTLESCENE);
+						PRIMARY.setTitle("BATTLE");
+					}
+				});
+			});
+			wait.start();
+		});
+		mainMenuStart.setOnMouseEntered(e -> {
+			System.out.println("here");
 		});
 	}
 	public void setMainMenuExit(Button mainMenuExit) {

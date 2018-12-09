@@ -1,16 +1,23 @@
 package application;
 
+import java.util.ArrayList;
+
+import javafx.animation.ScaleTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 public class PauseStage extends Pane{
 	private Button resume;
 	private Button backtoMain;
 	private Button restart;
 	private Button exit;
+	private static Sun sun;
 	
 	public PauseStage() {
 		super();
@@ -40,7 +47,7 @@ public class PauseStage extends Pane{
 		exit.setLayoutX(740);
 		exit.setLayoutY(400);
 		exit.setOpacity(0);
-		
+		sun = new Sun();
 		this.getChildren().addAll(resume,backtoMain,restart,exit);
 	}
 
@@ -58,6 +65,9 @@ public class PauseStage extends Pane{
 
 	public Button getExit() {
 		return exit;
+	}
+	public static void raiseTheSun() {
+		sun.raiseTheSun();
 	}
 	
 }
