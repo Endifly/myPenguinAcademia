@@ -145,6 +145,7 @@ public class Penguin extends StackPane implements controlable , fireable{
 					if (EventManager.Z == false) {
 						zTriggerd = false;
 					}
+					this.stay();
 				}
 
 			} catch (Exception e) {
@@ -152,6 +153,21 @@ public class Penguin extends StackPane implements controlable , fireable{
 			}
 		});
 		control.start();
+	}
+	public void stay() {
+		// TODO Auto-generated method stub
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				penguinPane.clearRect(h, k, 152, 118);
+				penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+			}
+			private Image LoadImage(String imagePath) {
+				return new Image(ClassLoader.getSystemResource(imagePath).toString());
+			}
+		});
+		
 	}
 	@Override
 	public void fire() {
