@@ -25,12 +25,10 @@ public class BattleStage extends VBox{
 	private Label score;
 	private Penguin player1;
 	private Canvas battleStageCanvas;
-	private int x = 4*152;
-	private int y = 4*118;
 	private static List<Bullet> bullets;
 	private static List<Monster> monster;
 	private  static Thread bulletsManager;
-	private Thread sekMonster;
+	private static Thread sekMonster;
 	private static Thread monsterManager;
 	
 	public BattleStage() {
@@ -168,6 +166,9 @@ public class BattleStage extends VBox{
 
 	public static void stop() {
 		bulletsManager.interrupt();
+		sekMonster.interrupt();
+		monsterManager.interrupt();
 		bullets.clear();
+		monster.clear();
 	}
 }
