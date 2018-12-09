@@ -46,6 +46,7 @@ public class EventManager {
 						// TODO Auto-generated method stub
 						PRIMARY.setScene(BATTLESCENE);
 						PRIMARY.setTitle("BATTLE");
+						BattleStage.startMonster();
 					}
 				});
 			});

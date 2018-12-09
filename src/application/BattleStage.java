@@ -74,7 +74,6 @@ public class BattleStage extends VBox{
 				e.printStackTrace();
 			}
 		});
-		monsterManager.start();
 		status.getChildren().addAll(score,HP);
 		this.getChildren().addAll(status,battleStageCanvas);
 		
@@ -156,6 +155,9 @@ public class BattleStage extends VBox{
 		
 			//System.out.println(x);
 		}
+	}
+	public static void startMonster() {
+		monsterManager.start();
 	}
 	public static void stop() {
 		bulletsManager.interrupt();
