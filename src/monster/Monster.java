@@ -17,12 +17,14 @@ public class Monster {
 	private Canvas bulletPicture;
 	private GraphicsContext monsterGC;
 	
-	public Monster(GraphicsContext gc) {
+	public Monster(GraphicsContext gc,int h,int k) {
 		this.hp = 1;
 		this.atk = 1;
 		this.imagepath = "";
 		this.score = 100;
 		monsterGC = gc;
+		this.h = h;
+		this.k = k;
 	}
 	public Monster(int hp,int atk,String imagepath,int score,int m,int c,double speedMon,double speed,GraphicsContext monsterGC) {
 		this.hp = hp;
