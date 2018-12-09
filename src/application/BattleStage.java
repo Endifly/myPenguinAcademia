@@ -4,8 +4,10 @@ import util.reference;
 import monster.*;
 
 import java.util.List;
+import java.util.Random;
 import java.beans.DefaultPersistenceDelegate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import javafx.geometry.Pos;
@@ -56,7 +58,9 @@ public class BattleStage extends VBox{
 		monsterManager = new Thread(() -> {
 			try {
 				while (true) {
-					this.sekMonster(2);
+					Random rand = new Random();
+					int n = rand.nextInt(2)+1;
+					this.sekMonster(n);
 					System.out.println("monsterManager");
 					while(!EventManager.C) {
 						Thread.sleep(100);
@@ -145,7 +149,7 @@ public class BattleStage extends VBox{
 			int x2 = util.reference.WIDTH;
 			int y2 = 0;
 			for(int i =0 ;i<8;i++) {
-				monster.add(new Monster(this.battleStageGC,x2,y2));
+				monster.add(new Monster2(this.battleStageGC,x2,y2));
 				x2 +=100;
 				y2 -=100;
 			}

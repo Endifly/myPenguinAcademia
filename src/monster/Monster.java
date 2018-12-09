@@ -7,15 +7,15 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Monster {
-	private int hp;
-	private int atk;
-	private String imagepath;
-	private int score;
-	private int h,k;
-	private int m,c;
-	private double speedMon,speed;
-	private Canvas bulletPicture;
-	private GraphicsContext monsterGC;
+	protected int hp;
+	protected int atk;
+	protected String imagepath;
+	protected int score;
+	protected int h,k;
+	protected int m,c;
+	protected double speedMon,speed;
+	protected Canvas bulletPicture;
+	protected GraphicsContext monsterGC;
 	
 	public Monster(GraphicsContext gc,int h,int k) {
 		this.hp = 1;
@@ -49,7 +49,7 @@ public class Monster {
 				if (k < 600) {
 					monsterGC.clearRect(h, k, 84, 67);
 					k = k+10;
-					h = h-10;
+					h = h+10;
 					monsterGC.drawImage(this.LoadImage("bullet-default.png"), h, k);
 				}
 			}
