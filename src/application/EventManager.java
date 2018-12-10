@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -20,6 +21,7 @@ public class EventManager {
 	private static Scene BATTLESCENE;
 	private static Scene MENUSCENE;
 	private static Scene PAUSESCENE;
+	private StackPane rootBattleStage;
 	private AudioClip sound;
 	
 	//detect all used key true if it was pressed , false for not.
@@ -52,9 +54,10 @@ public class EventManager {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
+						BattleStage.startBattleStage();
 						PRIMARY.setScene(BATTLESCENE);
 						PRIMARY.setTitle("BATTLE");
-						BattleStage.startMonster();
+						//BattleStage.startMonster();
 					}
 				});
 			});
@@ -115,6 +118,7 @@ public class EventManager {
 	public void setPauseStageBacktoMenu(Button pauseStageBacktoMenu) {
 		pauseStageBacktoMenu.setOnAction(e -> {
 			BattleStage.restartBattleStage();
+			this.newBattleScene();
 			PRIMARY.setScene(MENUSCENE);
 			PRIMARY.setTitle("menu");
 		});
@@ -129,7 +133,11 @@ public class EventManager {
 	}
 	public void setPauseStageRestart(Button pauseStageRestart) {
 		pauseStageRestart.setOnAction(e-> {
-			
+			BattleStage.restartBattleStage();
+			this.newBattleScene();
+			BattleStage.startBattleStage();
+			PRIMARY.setScene(BATTLESCENE);
+			PRIMARY.setTitle("Battle");
 		});
 	}
 	
@@ -151,6 +159,15 @@ public class EventManager {
 	}
 	private Media LoadMedia(String mediaPath) {
 		return new Media(ClassLoader.getSystemResource(mediaPath).toString());
+	}
+	public void newBattleScene() {
+		rootBattleStage = new StackPane();
+		rootBattleStage.setId("battlePane");
+		BattleStage battleStage = new BattleStage();
+		rootBattleStage.getChildren().addAll(battleStage);
+		this.BATTLESCENE = new Scene(rootBattleStage , util.reference.WIDTH , util.reference.HIGH);
+		this.BATTLESCENE.getStylesheets().addAll(this.getClass().getResource("battle.css").toExternalForm());
+		this.setBattleKeyPress(BATTLESCENE);
 	}
 
 	

@@ -52,6 +52,7 @@ public class Main extends Application{
 		eventManager.setPauseStageResume(pauseStage.getResume());
 		eventManager.setPauseStageBacktoMenu(pauseStage.getBacktoMain());
 		eventManager.setPauseStageExit(pauseStage.getExit());
+		eventManager.setPauseStageRestart(pauseStage.getRestart());
 		
 		//stage setting
 		primaryStage.setScene(menuScene);

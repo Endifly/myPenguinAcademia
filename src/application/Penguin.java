@@ -15,7 +15,7 @@ public class Penguin extends StackPane implements controlable , fireable, dieabl
 	private int level;
 	private double maxHP;
 	private double hp;
-	private int h = 0 , k = 0;
+	private int h = 600 , k = 500;
 	private int speedX , speedY;
 	private Scene battleControl;
 	private Bullet bullet;

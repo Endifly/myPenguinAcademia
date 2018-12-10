@@ -62,35 +62,10 @@ public class BattleStage extends VBox{
 		
 		this.bulletsManagerThread();
 		this.bulletsMonsterManagerThread();
+		this.monsterManagerThread();
 		
 		//monster manager
-		monsterManager = new Thread(() -> {
-			try {
-				while (true) {
-					Random rand = new Random();
-					int n = rand.nextInt(2)+1;
-					this.sekMonster(n);
-					System.out.println("monsterManager");
-					while(!EventManager.C) {
-						Thread.sleep(100);
-						for (int i = monster.size()-1 ; i >= 0 ; i--) {
-							//System.out.println(i);
-							if (Main.timer.currentTime%3 == 0 && !monster.get(i).fired) {
-								monster.get(i).fire();
-								monster.get(i).fired = true;
-							}
-							if (Main.timer.currentTime%3 != 0) {
-								monster.get(i).fired = false;
-							}
-							monster.get(i).draw();
-							//monster.get(i).fire();
-						}
-					}
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
+		
 		status.getChildren().addAll(score,HP);
 		this.getChildren().addAll(status,battleStageCanvas);
 		
@@ -151,8 +126,36 @@ public class BattleStage extends VBox{
 				e.printStackTrace();
 			}
 		});
-		bulletsManager.start();
 	} 
+	private void monsterManagerThread(){
+		monsterManager = new Thread(() -> {
+			try {
+				while (true) {
+					Random rand = new Random();
+					int n = rand.nextInt(2)+1;
+					this.sekMonster(n);
+					System.out.println("monsterManager");
+					while(!EventManager.C) {
+						Thread.sleep(100);
+						for (int i = monster.size()-1 ; i >= 0 ; i--) {
+							//System.out.println(i);
+							if (Main.timer.currentTime%3 == 0 && !monster.get(i).fired) {
+								monster.get(i).fire();
+								monster.get(i).fired = true;
+							}
+							if (Main.timer.currentTime%3 != 0) {
+								monster.get(i).fired = false;
+							}
+							monster.get(i).draw();
+							//monster.get(i).fire();
+						}
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+	}
 	private void bulletsMonsterManagerThread() {
 		bulletsMonsterManager = new Thread(() -> {
 			try {
@@ -183,7 +186,6 @@ public class BattleStage extends VBox{
 				e.printStackTrace();
 			}
 		});
-		bulletsMonsterManager.start();
 	}
 	public void sekMonster(int p) {
 		monster.clear();
@@ -275,6 +277,8 @@ public class BattleStage extends VBox{
 		bullets.clear();
 		monster.clear();
 		bulletsMonster.clear();
+		forScore = 0;
+		score.setText("0");
 	}
 	public static void startBattleStage() {
 		bulletsManager.start();

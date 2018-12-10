@@ -15,7 +15,6 @@ public class MainMenu extends Pane{
 	private Button start;
 	private Button exit;
 	private Button leaderBoard;
-	private static ScaleTransition scale;
 	private static Sun sun;
 	
 	public MainMenu() {
