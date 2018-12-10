@@ -119,6 +119,9 @@ public class BattleStage extends VBox{
 					//System.out.println( bullets.size());
 					for (int i = bullets.size()-1 ; i >= 0 ; i--) {
 						bullets.get(i).draw();
+						if (bullets.get(i).isIn(monster)) {
+
+						}
 						if (bullets.get(i).getK() < -80) {
 							//System.out.println("removed");
 							bullets.get(i).remove();
@@ -170,6 +173,10 @@ public class BattleStage extends VBox{
 		bulletsManager.interrupt();
 		monsterManager.interrupt();
 		bullets.clear();
+		monster.clear();
+	}
+	public static void restartBattleStage() {
+		monsterManager.interrupt();
 		monster.clear();
 	}
 }

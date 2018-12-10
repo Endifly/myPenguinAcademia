@@ -1,10 +1,15 @@
 package application;
 
+import java.util.List;
+
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
+
+import util.reference;
+import monster.*;
 
 public class Bullet {
 	private String name;
@@ -13,6 +18,7 @@ public class Bullet {
 	private int h,k;
 	private int m,c;
 	private double speed;
+	private int r;
 	private GraphicsContext bulletGC;
 	
 	public Bullet(String name, int damage , String imagePath , int m , int c,Penguin firer , GraphicsContext gc) {
@@ -23,6 +29,7 @@ public class Bullet {
 		this.k = firer.getK();
 		this.m = m;
 		this.c = c;
+		r = (int) (this.LoadImage(imagePath).getHeight())/2;
 		//bulletPicture = new Canvas(90, 90);
 		bulletGC = gc;
 		//bulletGC.drawImage(this.LoadImage(imagePath), h, k);
@@ -70,6 +77,35 @@ public class Bullet {
 	public int getK() {
 		return k;
 	}
-	//public void isIn(bullet)
+	public boolean isIn(List<Monster> monster) {
+			for (Monster e : monster) {
+				int deltaX = e.getCenterX()-this.getCenterX();
+				int deltaY = e.getCenterY()-this.getCenterY();
+				int deltaR = e.getR()-this.getR();
+				System.out.println("debug-------------------------------");
+				System.out.println(e.getH());
+				System.out.println(e.getCenterX());
+				System.out.println(e.getK());
+				System.out.println(e.getCenterY());
+				System.out.println(this.getH());
+				System.out.println(this.getCenterX());
+				System.out.println(this.getK());
+				System.out.println(this.getCenterY());
+				System.out.println(deltaR);
+				if (Math.sqrt((deltaX*deltaX+deltaY*deltaY)) < Math.abs(deltaR)){
+					return true;
+				}
+			}
+			return false;
+	}
+	public int getCenterX() {
+		return h+r;
+	}
+	public int getCenterY() {
+		return k+r;
+	}
+	public int getR() {
+		return r;
+	}
 	
 }

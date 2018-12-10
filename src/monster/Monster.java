@@ -13,6 +13,7 @@ public class Monster {
 	protected int score;
 	protected int h,k;
 	protected int m,c;
+	protected int r;
 	protected double speedMon,speed;
 	protected Canvas bulletPicture;
 	protected GraphicsContext monsterGC;
@@ -25,6 +26,7 @@ public class Monster {
 		monsterGC = gc;
 		this.h = h;
 		this.k = k;
+		this.r = (int) (this.LoadImage(imagepath).getHeight())/2;
 	}
 	public Monster(int hp,int atk,String imagepath,int score,int m,int c,double speedMon,double speed,GraphicsContext monsterGC) {
 		this.hp = hp;
@@ -36,6 +38,7 @@ public class Monster {
 		this.speed = speed;
 		this.speedMon = speedMon;
 		this.monsterGC = monsterGC;
+		this.r = (int) (this.LoadImage(imagepath).getHeight())/2;
 		BattleStage.addMonster(this);
 	}
 	private Image LoadImage(String imagePath) {
@@ -129,5 +132,14 @@ public class Monster {
 	}
 	public void update() {
 		
+	}
+	public int getCenterX() {
+		return h+r;
+	}
+	public int getCenterY() {
+		return k+r;
+	}
+	public int getR() {
+		return r;
 	}
 }

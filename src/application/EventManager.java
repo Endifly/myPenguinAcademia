@@ -105,6 +105,7 @@ public class EventManager {
 	}
 	public void setPauseStageBacktoMenu(Button pauseStageBacktoMenu) {
 		pauseStageBacktoMenu.setOnAction(e -> {
+			BattleStage.restartBattleStage();
 			PRIMARY.setScene(MENUSCENE);
 			PRIMARY.setTitle("menu");
 		});
