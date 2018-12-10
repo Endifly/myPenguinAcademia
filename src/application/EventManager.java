@@ -127,6 +127,11 @@ public class EventManager {
 			PRIMARY.close();
 		});
 	}
+	public void setPauseStageRestart(Button pauseStageRestart) {
+		pauseStageRestart.setOnAction(e-> {
+			
+		});
+	}
 	
 	//getter
 	public static Stage getPrimary() {
