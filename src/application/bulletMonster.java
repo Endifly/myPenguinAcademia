@@ -36,4 +36,10 @@ public class bulletMonster extends Bullet{
 	public void addBullet() {
 		BattleStage.addMonsterBullet(this);
 	}
+	public int getK() {
+		return this.k;
+	}
+	public int getH() {
+		return this.h;
+	}
 }

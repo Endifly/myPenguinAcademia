@@ -155,8 +155,8 @@ public class BattleStage extends VBox{
 					System.out.println(bulletsMonster.size());
 					for (int i = bulletsMonster.size()-1 ; i >= 0 ; i--) {
 						bulletsMonster.get(i).draw();
-						if (bulletsMonster.get(i).getK() < -80 || bulletsMonster.get(i).getK() > 600) {
-							//System.out.println("removed");
+						if (bulletsMonster.get(i).getK() < -80 || bulletsMonster.get(i).getK() > util.reference.HIGH-60) {
+							System.out.println("removed");
 							bulletsMonster.get(i).remove();
 							bulletsMonster.remove(i);
 						}
