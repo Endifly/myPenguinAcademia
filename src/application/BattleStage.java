@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -24,7 +25,8 @@ import monster.Monster;
 
 public class BattleStage extends VBox{
 	private ProgressBar HP;
-	private Label score;
+	private static Label score;
+	private static int forScore;
 	private Penguin player1;
 	private Canvas battleStageCanvas;
 	private static List<Bullet> bullets;
@@ -269,5 +271,16 @@ public class BattleStage extends VBox{
 	public static void restartBattleStage() {
 		monsterManager.interrupt();
 		monster.clear();
+	}
+	public static void raiseScore(int s) {
+		forScore += s;
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				score.setText(String.format("%d", forScore));
+			}
+		});
 	}
 }

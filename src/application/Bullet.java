@@ -89,6 +89,7 @@ public class Bullet {
 				if (Math.sqrt((deltaX*deltaX+deltaY*deltaY)) < Math.abs(deltaR)){
 					e.setHp(e.getHp()-this.damage);
 					if (e.getHp() <= 0) {
+						BattleStage.raiseScore(e.getScore());
 						monster.remove(i);
 						e.remove();
 					}
