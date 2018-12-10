@@ -81,7 +81,7 @@ public class Bullet {
 			for (Monster e : monster) {
 				int deltaX = e.getCenterX()-this.getCenterX();
 				int deltaY = e.getCenterY()-this.getCenterY();
-				int deltaR = e.getR()-this.getR();
+				int deltaR = e.getR()+this.getR();
 				if (Math.sqrt((deltaX*deltaX+deltaY*deltaY)) < Math.abs(deltaR)){
 					System.out.println("debug-------------------------------");
 					System.out.println(e.getH());
