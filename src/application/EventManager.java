@@ -1,21 +1,26 @@
 package application;
 
+import javafx.scene.media.AudioClip;
 import java.util.concurrent.TimeUnit;
 
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import util.controlable;
+import util.controlable;;
 
 public class EventManager {
 	private static Stage PRIMARY;
 	private static Scene BATTLESCENE;
 	private static Scene MENUSCENE;
 	private static Scene PAUSESCENE;
+	private AudioClip sound;
 	
 	//detect all used key true if it was pressed , false for not.
 	public static boolean UP,DOWN,LEFT,RIGHT,ESCAPE,Z,X,C,V ;
@@ -26,12 +31,15 @@ public class EventManager {
 		this.MENUSCENE = menu;
 		this.BATTLESCENE = battle;
 		this.PAUSESCENE = pause;
+		//click = this.LoadMedia("click.mp3");
+		sound = new AudioClip(ClassLoader.getSystemResource("click.mp3").toString());
 	}
 	
 	//mainStage setting
 	public void setMainMenuStart(Button mainMenuStart) {
 		mainMenuStart.setOnAction(e ->{
 			MainMenu.raiseTheSun();
+			sound.play();
 			Thread wait = new Thread(()->  {
 				try {
 					Thread.sleep(1100);
@@ -136,6 +144,9 @@ public class EventManager {
 	public static Scene getPauseScene() {
 		return PAUSESCENE;
 	}
-	
+	private Media LoadMedia(String mediaPath) {
+		return new Media(ClassLoader.getSystemResource(mediaPath).toString());
+	}
+
 	
 }

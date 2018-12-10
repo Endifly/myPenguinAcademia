@@ -7,6 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import util.fireable;
 import util.reference;
 import monster.*;
@@ -53,6 +54,7 @@ public class Bullet {
 				bulletGC.clearRect(h, k, this.LoadImage(imagePath).getWidth(), this.LoadImage(imagePath).getHeight());
 				k = k-10;
 				bulletGC.drawImage(this.LoadImage(imagePath), h, k);
+				bulletGC.setFill(Color.rgb(0, 0, 0, 0));
 			}
 			private Image LoadImage(String imagePath) {
 				return new Image(ClassLoader.getSystemResource(imagePath).toString());
