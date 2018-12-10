@@ -157,7 +157,7 @@ public class BattleStage extends VBox{
 				while(true) {
 					Thread.sleep(16);
 					//System.out.println( bullets.size());
-					System.out.println(bulletsMonster.size());
+					//System.out.println(bulletsMonster.size());
 					for (int i = bulletsMonster.size()-1 ; i >= 0 ; i--) {
 						bulletsMonster.get(i).draw();
 						if (bulletsMonster.get(i).isAt(player1)) {
@@ -216,6 +216,7 @@ public class BattleStage extends VBox{
 	public static void stop() {
 		bulletsManager.interrupt();
 		monsterManager.interrupt();
+		bulletsMonsterManager.interrupt();
 		bullets.clear();
 		monster.clear();
 	}
