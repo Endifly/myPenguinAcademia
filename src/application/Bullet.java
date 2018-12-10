@@ -82,17 +82,17 @@ public class Bullet {
 				int deltaX = e.getCenterX()-this.getCenterX();
 				int deltaY = e.getCenterY()-this.getCenterY();
 				int deltaR = e.getR()-this.getR();
-				System.out.println("debug-------------------------------");
-				System.out.println(e.getH());
-				System.out.println(e.getCenterX());
-				System.out.println(e.getK());
-				System.out.println(e.getCenterY());
-				System.out.println(this.getH());
-				System.out.println(this.getCenterX());
-				System.out.println(this.getK());
-				System.out.println(this.getCenterY());
-				System.out.println(deltaR);
 				if (Math.sqrt((deltaX*deltaX+deltaY*deltaY)) < Math.abs(deltaR)){
+					System.out.println("debug-------------------------------");
+					System.out.println(e.getH());
+					System.out.println(e.getCenterX());
+					System.out.println(e.getK());
+					System.out.println(e.getCenterY());
+					System.out.println(this.getH());
+					System.out.println(this.getCenterX());
+					System.out.println(this.getK());
+					System.out.println(this.getCenterY());
+					System.out.println(deltaR);
 					return true;
 				}
 			}
