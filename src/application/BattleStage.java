@@ -73,7 +73,7 @@ public class BattleStage extends VBox{
 						Thread.sleep(100);
 						for (int i = monster.size()-1 ; i >= 0 ; i--) {
 							//System.out.println(i);
-							if (Main.timer.currentTime%1 == 0 && !fired) {
+							if (Main.timer.currentTime%3 == 0 && !fired) {
 								monster.get(i).fire();
 								fired = true;
 							}
@@ -162,9 +162,11 @@ public class BattleStage extends VBox{
 						bulletsMonster.get(i).draw();
 						if (bulletsMonster.get(i).isAt(player1)) {
 							player1.setHP(player1.getHp()-bulletsMonster.get(i).getDamage());
-							System.out.println("damaged");
+							if (player1.getHp() <= 0) {
+								this.pauseMonster();
+							}
 						}
-						if (bulletsMonster.get(i).getK() < -80 || bulletsMonster.get(i).getK() > util.reference.HIGH-60) {
+						if (bulletsMonster.get(i).getK() < -80 || bulletsMonster.get(i).getK() > util.reference.HIGH-60 || bulletsMonster.get(i).isAt(player1)) {
 							//System.out.println("removed");
 							bulletsMonster.get(i).remove();
 							bulletsMonster.remove(i);

@@ -15,7 +15,7 @@ public class Bullet {
 	private String name;
 	private String imagePath;
 	private int damage;
-	private int h,k;
+	protected int h,k;
 	private int m,c;
 	private double speed;
 	private int r;
@@ -112,7 +112,7 @@ public class Bullet {
 		int deltaX = e.getCenterX()-this.getCenterX();
 		int deltaY = e.getCenterY()-this.getCenterY();
 		int deltaR = e.getR()+this.getR();
-		System.out.println("debug-------------------------------");
+		/*System.out.println("debug-------------------------------");
 		System.out.println(e.getH());
 		System.out.println(e.getCenterX());
 		System.out.println(e.getK());
@@ -123,7 +123,7 @@ public class Bullet {
 		System.out.println(this.getCenterY());
 		System.out.println(deltaR);
 		System.out.println(Math.sqrt((deltaX*deltaX+deltaY*deltaY)));
-		System.out.println("debug-------------------------------");
+		System.out.println("debug-------------------------------");*/
 		if (Math.sqrt((deltaX*deltaX+deltaY*deltaY)) < Math.abs(deltaR)) {
 			return true;
 		}
@@ -132,10 +132,10 @@ public class Bullet {
 		}
 	}
 	public int getCenterX() {
-		return h+r;
+		return this.h+r;
 	}
 	public int getCenterY() {
-		return k+r;
+		return this.k+r;
 	}
 	public int getR() {
 		return r;

@@ -8,7 +8,7 @@ import util.fireable;
 public class bulletMonster extends Bullet{
 	private GraphicsContext bulletGC;
 	private String imagePath;
-	private int h,k;
+	//private int h,k;
 	public bulletMonster(String name, int damage , String imagePath , int m , int c,fireable firer , GraphicsContext gc) {
 		super(name , damage , imagePath , m , c , firer , gc);
 		this.bulletGC = gc;
@@ -37,6 +37,7 @@ public class bulletMonster extends Bullet{
 		BattleStage.addMonsterBullet(this);
 	}
 	public int getK() {
+		//System.out.println("owering");
 		return this.k;
 	}
 	public int getH() {
