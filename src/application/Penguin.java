@@ -193,7 +193,7 @@ public class Penguin extends StackPane implements controlable , fireable, dieabl
 	@Override
 	public void fire() {
 		// TODO Auto-generated method stub
-		new Bullet("whatThis", 10, "bullet-transperent.jpg", 1, 0, this , penguinPane);
+		new BulletPlayerSlant("whatThis", 10, "bullet-transperent.jpg", 1, 0, this , penguinPane);
 		
 	}
 	@Override

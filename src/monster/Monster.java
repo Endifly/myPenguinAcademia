@@ -58,12 +58,11 @@ public class Monster implements fireable,dieable{
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				if (k < 600) {
 					monsterGC.clearRect(h, k, 84, 67);
 					k = k+10;
 					h = h+10;
 					monsterGC.drawImage(this.LoadImage(imagepath), h, k);
-				}
+				
 			}
 			private Image LoadImage(String imagePath) {
 				return new Image(ClassLoader.getSystemResource(imagePath).toString());
