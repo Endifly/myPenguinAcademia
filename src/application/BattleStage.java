@@ -133,9 +133,13 @@ public class BattleStage extends VBox{
 				while (true) {
 					Random rand = new Random();
 					int n = rand.nextInt(2)+1;
+					for(Monster e:monster) {
+						e.remove();
+					}
 					this.sekMonster(n);
 					System.out.println("monsterManager");
-					while(!EventManager.C) {
+					startAt = Time.currentTime;
+					while(Time.currentTime-startAt <=15 ) {
 						Thread.sleep(100);
 						for (int i = monster.size()-1 ; i >= 0 ; i--) {
 							//System.out.println(i);
@@ -202,9 +206,9 @@ public class BattleStage extends VBox{
 			int x1 = 0;
 			int y1 = 0;
 			Random rand = new Random();
-			int n = rand.nextInt(350)+1;
+			int n = rand.nextInt(200)+1;
 			while(n<50) {
-				n = rand.nextInt(350)+1;
+				n = rand.nextInt(200)+1;
 			}
 			for(int i =0 ;i<8;i++) {
 				monster.add(new Monster(this.battleStageGC,x1,y1,""));
@@ -216,9 +220,9 @@ public class BattleStage extends VBox{
 			int x2 = util.reference.WIDTH;
 			int y2 = 0;
 			Random rand = new Random();
-			int n = rand.nextInt(350)+1;
+			int n = rand.nextInt(300)+1;
 			while(n<50) {
-				n = rand.nextInt(350)+1;
+				n = rand.nextInt(300)+1;
 			}
 			for(int i =0 ;i<8;i++) {
 				monster.add(new Monster2(this.battleStageGC,x2,y2,""));
@@ -232,9 +236,9 @@ public class BattleStage extends VBox{
 			int x2 = util.reference.WIDTH;
 			int y2 = 0;
 			Random rand = new Random();
-			int n = rand.nextInt(350)+1;
+			int n = rand.nextInt(200)+1;
 			while(n<50) {
-				n = rand.nextInt(350)+1;
+				n = rand.nextInt(200)+1;
 			}
 			for(int i =0 ;i<8;i++) {
 				monster.add(new Monster(this.battleStageGC,x2,y2,""));
@@ -247,9 +251,9 @@ public class BattleStage extends VBox{
 			int x2 = 0;
 			int y2 = 0;
 			Random rand = new Random();
-			int n = rand.nextInt(350)+1;
+			int n = rand.nextInt(200)+1;
 			while(n<50) {
-				n = rand.nextInt(350)+1;
+				n = rand.nextInt(200)+1;
 			}
 			for(int i =0 ;i<8;i++) {
 				monster.add(new Monster2(this.battleStageGC,x2,y2,""));
