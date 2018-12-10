@@ -5,8 +5,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Monster2 extends Monster{
-	public Monster2(GraphicsContext gc,int h,int k) {
-		super(gc,h,k);
+	public Monster2(GraphicsContext gc,int h,int k,String imagepath) {
+		super(gc,h,k,imagepath);
 	}
 	public Monster2(int hp,int atk,String imagepath,int score,int m,int c,double speedMon,double speed,GraphicsContext monsterGC) {
 		super(hp,atk,"bullet-transperent.jpg",score,m,c,speedMon,speed,monsterGC);

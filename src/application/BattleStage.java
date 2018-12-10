@@ -139,7 +139,7 @@ public class BattleStage extends VBox{
 			int x1 = 0;
 			int y1 = 0;
 			for(int i =0 ;i<8;i++) {
-				monster.add(new Monster(this.battleStageGC,x1,y1));
+				monster.add(new Monster(this.battleStageGC,x1,y1,"bullet-transperent.jpg"));
 				x1 -=100;
 				y1 -=100;
 			}
@@ -148,7 +148,7 @@ public class BattleStage extends VBox{
 			int x2 = util.reference.WIDTH;
 			int y2 = 0;
 			for(int i =0 ;i<8;i++) {
-				monster.add(new Monster2(this.battleStageGC,x2,y2));
+				monster.add(new Monster2(this.battleStageGC,x2,y2,"bullet-transperent.jpg"));
 				x2 +=100;
 				y2 -=100;
 			}
