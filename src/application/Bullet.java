@@ -93,6 +93,7 @@ public class Bullet {
 					System.out.println(this.getK());
 					System.out.println(this.getCenterY());
 					System.out.println(deltaR);
+					System.out.println("debug-------------------------------");
 					return true;
 				}
 			}
