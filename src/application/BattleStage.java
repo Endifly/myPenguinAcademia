@@ -161,7 +161,10 @@ public class BattleStage extends VBox{
 					for (int i = bulletsMonster.size()-1 ; i >= 0 ; i--) {
 						bulletsMonster.get(i).draw();
 						if (bulletsMonster.get(i).isAt(player1)) {
-							player1.setHP(player1.getHp()-bulletsMonster.get(i).getDamage());
+							if (player1.getHp()-bulletsMonster.get(i).getDamage() <= 0) player1.setHP(0);
+							else player1.setHP(player1.getHp()-bulletsMonster.get(i).getDamage());
+							System.out.println(player1.getHp()/player1.getMaxHP());
+							HP.setProgress(player1.getHp()/100);
 							if (player1.getHp() <= 0) {
 								this.pauseMonster();
 							}

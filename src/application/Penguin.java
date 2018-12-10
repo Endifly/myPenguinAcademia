@@ -13,8 +13,8 @@ import util.fireable;
 
 public class Penguin extends StackPane implements controlable , fireable, dieable{
 	private int level;
-	private int maxHP;
-	private int hp;
+	private double maxHP;
+	private double hp;
 	private int h = 0 , k = 0;
 	private int speedX , speedY;
 	private Scene battleControl;
@@ -24,7 +24,7 @@ public class Penguin extends StackPane implements controlable , fireable, dieabl
 	private GraphicsContext penguinPane;
 	private static Thread control;
 	private static boolean controlRun = true;
-	private boolean zTriggerd = false;
+	private boolean zTriggerd = false , xTriggerd = false;;
 	private int r;
 	
 	public Penguin(GraphicsContext gc) {
@@ -61,13 +61,13 @@ public class Penguin extends StackPane implements controlable , fireable, dieabl
 	public int getLevel() {
 		return level;
 	}
-	public int getMaxHP() {
+	public double getMaxHP() {
 		return maxHP;
 	}
-	public void setHP(int hp) {
+	public void setHP(double hp) {
 		this.hp = hp;
 	}
-	public int getHp() {
+	public double getHp() {
 		return hp;
 	}
 	public String getName() {
@@ -166,6 +166,13 @@ public class Penguin extends StackPane implements controlable , fireable, dieabl
 					if (EventManager.Z == false) {
 						zTriggerd = false;
 					}
+					if (EventManager.X == true && !xTriggerd) {
+						this.fireSlant();
+						xTriggerd = true;
+					}
+					if (EventManager.X == false) {
+						xTriggerd = false;
+					}
 					this.stay();
 				}
 
@@ -193,8 +200,12 @@ public class Penguin extends StackPane implements controlable , fireable, dieabl
 	@Override
 	public void fire() {
 		// TODO Auto-generated method stub
-		new BulletPlayerSlant("whatThis", 10, "bullet-transperent.jpg", 1, 0, this , penguinPane);
+		new Bullet("whatThis", 10, "bullet-transperent.jpg", 1, 0, this , penguinPane);
 		
+	}
+	public void fireSlant() {
+		new BulletPlayerSlant("whatThis", 10, "bullet-transperent.jpg", 1, 0, this , penguinPane);
+		new BulletPlayerSlantLeft("test", 10, "bullet-transperent.jpg", 1, 0, this, penguinPane);
 	}
 	@Override
 	public void remove() {

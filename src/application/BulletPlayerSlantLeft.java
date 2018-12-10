@@ -5,10 +5,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import util.fireable;
 
-public class BulletPlayerSlant extends Bullet{
+public class BulletPlayerSlantLeft extends Bullet{
 	private GraphicsContext bulletGC;
 	private String imagePath;
-	public BulletPlayerSlant(String name, int damage , String imagePath , int m , int c,fireable firer , GraphicsContext gc) {
+	public BulletPlayerSlantLeft(String name, int damage , String imagePath , int m , int c,fireable firer , GraphicsContext gc) {
 		super(name , damage , imagePath , m , c , firer , gc);
 		
 		this.bulletGC = gc;
@@ -17,6 +17,17 @@ public class BulletPlayerSlant extends Bullet{
 		this.k = firer.getK();
 	}
 	
+	public BulletPlayerSlantLeft(String name, int damage, String imagePath2, int m, int c, Penguin firer,
+			GraphicsContext penguinPane) {
+		// TODO Auto-generated constructor stub
+		super(name , damage , imagePath2 , m , c , firer , penguinPane);
+		
+		this.bulletGC = penguinPane;
+		this.imagePath = imagePath2;
+		this.h = firer.getH();
+		this.k = firer.getK();
+	}
+
 	@Override
 	public void draw() {
 		Platform.runLater(new Runnable() {
@@ -25,7 +36,7 @@ public class BulletPlayerSlant extends Bullet{
 				// TODO Auto-generated method stub
 				bulletGC.clearRect(h, k, this.LoadImage(imagePath).getWidth(), this.LoadImage(imagePath).getHeight());
 				k = k-10;
-				h = h+10;
+				h = h-10;
 				bulletGC.drawImage(this.LoadImage(imagePath), h, k);
 			}
 			private Image LoadImage(String imagePath) {
