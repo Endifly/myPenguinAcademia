@@ -188,23 +188,65 @@ public class BattleStage extends VBox{
 		if(p ==1) {
 			int x1 = 0;
 			int y1 = 0;
+			Random rand = new Random();
+			int n = rand.nextInt(350)+1;
+			while(n<50) {
+				n = rand.nextInt(350)+1;
+			}
 			for(int i =0 ;i<8;i++) {
 				monster.add(new Monster(this.battleStageGC,x1,y1,""));
-				x1 -=100;
+				x1 -=n;
 				y1 -=100;
 			}
 		}
 		else if(p==2) {
 			int x2 = util.reference.WIDTH;
 			int y2 = 0;
+			Random rand = new Random();
+			int n = rand.nextInt(350)+1;
+			while(n<50) {
+				n = rand.nextInt(350)+1;
+			}
 			for(int i =0 ;i<8;i++) {
 				monster.add(new Monster2(this.battleStageGC,x2,y2,""));
-				x2 +=100;
+				x2 +=n;
 				y2 -=100;
 			}
 		
 			//System.out.println(x);
 		}
+		else if(p==3) {
+			int x2 = util.reference.WIDTH;
+			int y2 = 0;
+			Random rand = new Random();
+			int n = rand.nextInt(350)+1;
+			while(n<50) {
+				n = rand.nextInt(350)+1;
+			}
+			for(int i =0 ;i<8;i++) {
+				monster.add(new Monster(this.battleStageGC,x2,y2,""));
+				x2 +=n;
+				y2 -=100;
+			}
+		
+		}
+		else if(p==2) {
+			int x2 = 0;
+			int y2 = 0;
+			Random rand = new Random();
+			int n = rand.nextInt(350)+1;
+			while(n<50) {
+				n = rand.nextInt(350)+1;
+			}
+			for(int i =0 ;i<8;i++) {
+				monster.add(new Monster2(this.battleStageGC,x2,y2,""));
+				x2 -=n;
+				y2 -=100;
+			}
+		
+			//System.out.println(x);
+		}
+		
 	}
 	public static void startMonster() {
 		monsterManager.start();
