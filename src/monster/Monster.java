@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 public class Monster {
 	protected int hp;
 	protected int atk;
-	protected final static String imagepath = "bullet-transperent.jpg";
+	protected String imagepath;
 	protected int score;
 	protected int h,k;
 	protected int m,c;
@@ -21,7 +21,7 @@ public class Monster {
 	public Monster(GraphicsContext gc,int h,int k,String imagepath) {
 		this.hp = 1;
 		this.atk = 1;
-		//this.imagepath = imagepath;
+		this.imagepath = "bullet-transperent.jpg";
 		this.score = 100;
 		monsterGC = gc;
 		this.h = h;
@@ -33,14 +33,14 @@ public class Monster {
 	public Monster(int hp,int atk,String imagepath,int score,int m,int c,double speedMon,double speed,GraphicsContext monsterGC) {
 		this.hp = hp;
 		this.atk = atk;
-		//this.imagepath = imagepath;
+		this.imagepath = "bullet-transperent.jpg";
 		this.score = score;
 		this.m = m;
 		this.c = c;
 		this.speed = speed;
 		this.speedMon = speedMon;
 		this.monsterGC = monsterGC;
-		this.r = (int) (this.LoadImage("bullet-transperent.jpg").getHeight())/2;
+		this.r = (int) (this.LoadImage(this.imagepath).getHeight())/2;
 		BattleStage.addMonster(this);
 	}
 	private Image LoadImage(String imagePath) {
@@ -79,7 +79,7 @@ public class Monster {
 		return imagepath;
 	}
 	public void setImagepath(String imagepath) {
-		//this.imagepath = imagepath;
+		this.imagepath = imagepath;
 	}
 	public int getScore() {
 		return score;
