@@ -60,6 +60,7 @@ public class EventManager {
 		mainMenuExit.setOnAction(e -> {
 			Penguin.stop();
 			BattleStage.stop();
+			Time.stop();
 			PRIMARY.close();
 		});
 	}
@@ -114,6 +115,7 @@ public class EventManager {
 		pauseStageExit.setOnAction(e -> {
 			Penguin.stop();
 			BattleStage.stop();
+			Time.stop();
 			PRIMARY.close();
 		});
 	}

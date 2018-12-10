@@ -219,6 +219,7 @@ public class BattleStage extends VBox{
 		bulletsMonsterManager.interrupt();
 		bullets.clear();
 		monster.clear();
+		bulletsMonster.clear();
 	}
 	public static void restartBattleStage() {
 		monsterManager.interrupt();
