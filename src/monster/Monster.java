@@ -5,9 +5,10 @@ import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import util.dieable;
 import util.fireable;
 
-public class Monster implements fireable{
+public class Monster implements fireable,dieable{
 	protected int hp;
 	protected int atk;
 	protected String imagepath;
@@ -134,7 +135,7 @@ public class Monster implements fireable{
 	public void setMonsterGC(GraphicsContext monsterGC) {
 		this.monsterGC = monsterGC;
 	}
-	public void destroy() {
+	public void remove() {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {

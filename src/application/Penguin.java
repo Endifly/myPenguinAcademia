@@ -8,13 +8,14 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import util.controlable;
+import util.dieable;
 import util.fireable;
 
-public class Penguin extends StackPane implements controlable , fireable{
+public class Penguin extends StackPane implements controlable , fireable, dieable{
 	private int level;
 	private int maxHP;
 	private int hp;
-	private int h = 100 , k = 100;
+	private int h = 0 , k = 0;
 	private int speedX , speedY;
 	private Scene battleControl;
 	private Bullet bullet;
@@ -24,6 +25,7 @@ public class Penguin extends StackPane implements controlable , fireable{
 	private static Thread control;
 	private static boolean controlRun = true;
 	private boolean zTriggerd = false;
+	private int r;
 	
 	public Penguin(GraphicsContext gc) {
 		super();
@@ -32,7 +34,8 @@ public class Penguin extends StackPane implements controlable , fireable{
 		this.hp = 100;
 		this.bullet = new Bullet();
 		penguinPane = gc;
-		penguinPane.drawImage(this.LoadImage("Untitled.png"), h, k);
+		penguinPane.drawImage(this.LoadImage("bullet-transperent.jpg"), h, k);
+		r = (int) this.LoadImage("bullet-transperent.jpg").getHeight()/2;
 		this.controlThread();
 	}
 	public Penguin(GraphicsContext gc , int maxHP , int speedX , int speedY) {
@@ -55,6 +58,24 @@ public class Penguin extends StackPane implements controlable , fireable{
 	public void setK(int k) {
 		this.k = k;
 	}
+	public int getLevel() {
+		return level;
+	}
+	public int getMaxHP() {
+		return maxHP;
+	}
+	public void setHP(int hp) {
+		this.hp = hp;
+	}
+	public int getHp() {
+		return hp;
+	}
+	public String getName() {
+		return name;
+	}
+	public GraphicsContext getPenguinPane() {
+		return penguinPane;
+	}
 	public static void stop() {
 		controlRun = false;
 	}
@@ -68,9 +89,9 @@ public class Penguin extends StackPane implements controlable , fireable{
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				penguinPane.clearRect(h, k, 152, 118);
+				penguinPane.clearRect(h, k, 50, 50);
 				k = k-speedY-5;
-				penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+				penguinPane.drawImage(this.LoadImage("bullet-transperent.jpg"), h, k);
 			}
 			private Image LoadImage(String imagePath) {
 				return new Image(ClassLoader.getSystemResource(imagePath).toString());
@@ -84,9 +105,9 @@ public class Penguin extends StackPane implements controlable , fireable{
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				penguinPane.clearRect(h, k, 152, 118);
+				penguinPane.clearRect(h, k, 50, 50);
 				k = k+speedY+5;
-				penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+				penguinPane.drawImage(this.LoadImage("bullet-transperent.jpg"), h, k);
 			}
 			private Image LoadImage(String imagePath) {
 				return new Image(ClassLoader.getSystemResource(imagePath).toString());
@@ -100,9 +121,9 @@ public class Penguin extends StackPane implements controlable , fireable{
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				penguinPane.clearRect(h, k, 152, 118);
+				penguinPane.clearRect(h, k, 50, 50);
 				h = h+speedX+5;
-				penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+				penguinPane.drawImage(this.LoadImage("bullet-transperent.jpg"), h, k);
 			}
 			private Image LoadImage(String imagePath) {
 				return new Image(ClassLoader.getSystemResource(imagePath).toString());
@@ -117,9 +138,9 @@ public class Penguin extends StackPane implements controlable , fireable{
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				penguinPane.clearRect(h, k, 152, 118);
+				penguinPane.clearRect(h, k, 50, 50);
 				h = h-speedX-5;
-				penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+				penguinPane.drawImage(this.LoadImage("bullet-transperent.jpg"), h, k);
 			}
 			private Image LoadImage(String imagePath) {
 				return new Image(ClassLoader.getSystemResource(imagePath).toString());
@@ -160,8 +181,8 @@ public class Penguin extends StackPane implements controlable , fireable{
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				penguinPane.clearRect(h, k, 152, 118);
-				penguinPane.drawImage(this.LoadImage("untitled.png"), h, k);
+				penguinPane.clearRect(h, k, 50, 50);
+				penguinPane.drawImage(this.LoadImage("bullet-transperent.jpg"), h, k);
 			}
 			private Image LoadImage(String imagePath) {
 				return new Image(ClassLoader.getSystemResource(imagePath).toString());
@@ -174,5 +195,20 @@ public class Penguin extends StackPane implements controlable , fireable{
 		// TODO Auto-generated method stub
 		new Bullet("whatThis", 10, "bullet-transperent.jpg", 1, 0, this , penguinPane);
 		
+	}
+	@Override
+	public void remove() {
+		// TODO Auto-generated method stub
+		penguinPane.clearRect(h, k, this.LoadImage("bullet-transperent.jpg").getWidth(), this.LoadImage("bullet-transperent.jpg").getHeight());
+	}
+	
+	public int getCenterX() {
+		return this.h+r;
+	}
+	public int getCenterY() {
+		return this.k+r;
+	}
+	public int getR() {
+		return this.r;
 	}
 }

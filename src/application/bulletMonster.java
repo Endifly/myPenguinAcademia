@@ -42,4 +42,6 @@ public class bulletMonster extends Bullet{
 	public int getH() {
 		return this.h;
 	}
+	
+
 }

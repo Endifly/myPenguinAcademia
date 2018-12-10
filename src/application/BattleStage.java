@@ -36,6 +36,7 @@ public class BattleStage extends VBox{
 	private static Thread bulletsMonsterManager;
 	private GraphicsContext battleStageGC;
 	private int startAt;
+	private boolean fired = false;
 	
 	public BattleStage() {
 		super(10);
@@ -72,8 +73,12 @@ public class BattleStage extends VBox{
 						Thread.sleep(100);
 						for (int i = monster.size()-1 ; i >= 0 ; i--) {
 							//System.out.println(i);
-							if (Main.timer.currentTime%2 == 0) {
+							if (Main.timer.currentTime%1 == 0 && !fired) {
 								monster.get(i).fire();
+								fired = true;
+							}
+							if (Main.timer.currentTime%3 != 0) {
+								fired = false;
 							}
 							monster.get(i).draw();
 							//monster.get(i).fire();
@@ -155,8 +160,12 @@ public class BattleStage extends VBox{
 					System.out.println(bulletsMonster.size());
 					for (int i = bulletsMonster.size()-1 ; i >= 0 ; i--) {
 						bulletsMonster.get(i).draw();
+						if (bulletsMonster.get(i).isAt(player1)) {
+							player1.setHP(player1.getHp()-bulletsMonster.get(i).getDamage());
+							System.out.println("damaged");
+						}
 						if (bulletsMonster.get(i).getK() < -80 || bulletsMonster.get(i).getK() > util.reference.HIGH-60) {
-							System.out.println("removed");
+							//System.out.println("removed");
 							bulletsMonster.get(i).remove();
 							bulletsMonster.remove(i);
 						}
