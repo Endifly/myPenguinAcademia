@@ -7,4 +7,6 @@ public interface fireable {
 	//penguin and monster should import this
 	//drawer is graphiccontext of battleStage use for drawer any bullet
 	public void fire();
+	public int getH();
+	public int getK();
 }

@@ -12,6 +12,7 @@ public class Main extends Application{
 	private static PauseStage pauseStage;
 	private EventManager eventManager;
 	public static Sun sun;
+	public static Time timer;
 	@Override
 	public void start(Stage primaryStage)  {
 		// TODO Auto-generated method stub
@@ -22,6 +23,7 @@ public class Main extends Application{
 		StackPane rootPauseStage = new StackPane();
 		rootMenu.setId("pane");
 		rootPauseStage.setId("pausePane");
+		timer = new Time();
 		
 		//declare UI
 		menu = new MainMenu();

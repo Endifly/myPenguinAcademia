@@ -7,7 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
-
+import util.fireable;
 import util.reference;
 import monster.*;
 
@@ -21,7 +21,7 @@ public class Bullet {
 	private int r;
 	private GraphicsContext bulletGC;
 	
-	public Bullet(String name, int damage , String imagePath , int m , int c,Penguin firer , GraphicsContext gc) {
+	public Bullet(String name, int damage , String imagePath , int m , int c,fireable firer , GraphicsContext gc) {
 		this.name = name;
 		this.damage = damage;
 		this.imagePath = imagePath;
@@ -33,7 +33,7 @@ public class Bullet {
 		//bulletPicture = new Canvas(90, 90);
 		bulletGC = gc;
 		//bulletGC.drawImage(this.LoadImage(imagePath), h, k);
-		BattleStage.addBullet(this);
+		this.addBullet();
 		//bulletGC.fillRect(0, 0, util.reference.WIDTH, util.reference.HIGH);
 	}
 	private Image LoadImage(String imagePath) {
@@ -67,7 +67,10 @@ public class Bullet {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				bulletGC.clearRect(h, k, 84, 67);
+				bulletGC.clearRect(h, k, this.LoadImage(imagePath).getWidth(), this.LoadImage(imagePath).getHeight());
+			}
+			private Image LoadImage(String imagePath) {
+				return new Image(ClassLoader.getSystemResource(imagePath).toString());
 			}
 		});
 	}
@@ -78,12 +81,18 @@ public class Bullet {
 		return k;
 	}
 	public boolean isIn(List<Monster> monster) {
-			for (Monster e : monster) {
+			for (int i=monster.size()-1 ; i >= 0 ; i--) {
+				Monster e = monster.get(i);
 				int deltaX = e.getCenterX()-this.getCenterX();
 				int deltaY = e.getCenterY()-this.getCenterY();
 				int deltaR = e.getR()+this.getR();
 				if (Math.sqrt((deltaX*deltaX+deltaY*deltaY)) < Math.abs(deltaR)){
-					System.out.println("debug-------------------------------");
+					e.setHp(e.getHp()-this.damage);
+					if (e.getHp() <= 0) {
+						monster.remove(i);
+						e.destroy();
+					}
+					/*System.out.println("debug-------------------------------");
 					System.out.println(e.getH());
 					System.out.println(e.getCenterX());
 					System.out.println(e.getK());
@@ -93,7 +102,7 @@ public class Bullet {
 					System.out.println(this.getK());
 					System.out.println(this.getCenterY());
 					System.out.println(deltaR);
-					System.out.println("debug-------------------------------");
+					System.out.println("debug-------------------------------");*/
 					return true;
 				}
 			}
@@ -107,6 +116,9 @@ public class Bullet {
 	}
 	public int getR() {
 		return r;
+	}
+	public void addBullet() {
+		BattleStage.addPlayerBullet(this);
 	}
 	
 }

@@ -5,8 +5,9 @@ import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import util.fireable;
 
-public class Monster {
+public class Monster implements fireable{
 	protected int hp;
 	protected int atk;
 	protected final static String imagepath = "bullet-transperent.jpg";
@@ -17,18 +18,22 @@ public class Monster {
 	protected double speedMon,speed;
 	protected Canvas bulletPicture;
 	protected GraphicsContext monsterGC;
+	protected int startTimeAt;
+	private Thread control;
 	
 	public Monster(GraphicsContext gc,int h,int k,String imagepath) {
-		this.hp = 1;
+		this.hp = 20;
 		this.atk = 1;
 		//this.imagepath = imagepath;
 		this.score = 100;
 		monsterGC = gc;
 		this.h = h;
 		this.k = k;
+		this.startTimeAt = Main.timer.currentTime;
 		System.out.println(this.imagepath);
 		r =  (int) (this.LoadImage(this.imagepath).getHeight())/2;
 		System.out.println(r);
+		//this.controlThread();
 	}
 	public Monster(int hp,int atk,String imagepath,int score,int m,int c,double speedMon,double speed,GraphicsContext monsterGC) {
 		this.hp = hp;
@@ -129,8 +134,32 @@ public class Monster {
 	public void setMonsterGC(GraphicsContext monsterGC) {
 		this.monsterGC = monsterGC;
 	}
-	public boolean destroy() {
-		return hp==0;
+	public void destroy() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				monsterGC.clearRect(h, k, this.LoadImage(imagepath).getWidth(), this.LoadImage(imagepath).getHeight());
+			}
+			private Image LoadImage(String imagePath) {
+				return new Image(ClassLoader.getSystemResource(imagePath).toString());
+			}
+		});
+	}
+	public void controlThread() {
+		// TODO Auto-generated method stub
+		control = new Thread(() -> {
+			try {
+				while(true) {
+					Thread.sleep(3000);
+					this.fire();
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		control.start();
 	}
 	public void update() {
 		
@@ -143,5 +172,10 @@ public class Monster {
 	}
 	public int getR() {
 		return r;
+	}
+	@Override
+	public void fire() {
+		// TODO Auto-generated method stub
+		new bulletMonster("owen", 80, "bullet-monster1.jpg", 1, 0, this, monsterGC);
 	}
 }

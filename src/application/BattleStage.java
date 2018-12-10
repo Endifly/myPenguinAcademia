@@ -28,11 +28,14 @@ public class BattleStage extends VBox{
 	private Penguin player1;
 	private Canvas battleStageCanvas;
 	private static List<Bullet> bullets;
-	private static List<Monster> monster;
+	private static List<Bullet> bulletsMonster;
+	public static List<Monster> monster;
 	private  static Thread bulletsManager;
 	private static Thread sekMonster;
 	private static Thread monsterManager;
+	private static Thread bulletsMonsterManager;
 	private GraphicsContext battleStageGC;
+	private int startAt;
 	
 	public BattleStage() {
 		super(10);
@@ -45,7 +48,9 @@ public class BattleStage extends VBox{
 		score.setPrefWidth(util.reference.PREFWIDTH);
 		HP.setPrefWidth(util.reference.PREFWIDTH);
 		bullets = new CopyOnWriteArrayList<Bullet>();
+		bulletsMonster = new CopyOnWriteArrayList<Bullet>();
 		monster = new CopyOnWriteArrayList<Monster>();
+		startAt = Main.timer.currentTime;
 		
 		
 		battleStageCanvas = new Canvas(util.reference.WIDTH, util.reference.HIGH-60);
@@ -53,6 +58,7 @@ public class BattleStage extends VBox{
 		player1 = new Penguin(battleStageGC);
 		
 		this.bulletsManagerThread();
+		this.bulletsMonsterManagerThread();
 		
 		//monster manager
 		monsterManager = new Thread(() -> {
@@ -66,7 +72,11 @@ public class BattleStage extends VBox{
 						Thread.sleep(100);
 						for (int i = monster.size()-1 ; i >= 0 ; i--) {
 							//System.out.println(i);
+							if (Main.timer.currentTime%2 == 0) {
+								monster.get(i).fire();
+							}
 							monster.get(i).draw();
+							//monster.get(i).fire();
 						}
 					}
 				}
@@ -102,8 +112,11 @@ public class BattleStage extends VBox{
 	public void setPenguin1(Canvas penguin1) {
 		this.battleStageCanvas = penguin1;
 	}
-	public static void addBullet(Bullet e) {
+	public static void addPlayerBullet(Bullet e) {
 		bullets.add(e);
+	}
+	public static void addMonsterBullet(Bullet e) {
+		bulletsMonster.add(e);
 	}
 	public static void addMonster(Monster e) {
 		monster.add(e);
@@ -133,12 +146,35 @@ public class BattleStage extends VBox{
 		});
 		bulletsManager.start();
 	} 
+	private void bulletsMonsterManagerThread() {
+		bulletsMonsterManager = new Thread(() -> {
+			try {
+				while(true) {
+					Thread.sleep(16);
+					//System.out.println( bullets.size());
+					System.out.println(bulletsMonster.size());
+					for (int i = bulletsMonster.size()-1 ; i >= 0 ; i--) {
+						bulletsMonster.get(i).draw();
+						if (bulletsMonster.get(i).getK() < -80 || bulletsMonster.get(i).getK() > 600) {
+							//System.out.println("removed");
+							bulletsMonster.get(i).remove();
+							bulletsMonster.remove(i);
+						}
+					}
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		bulletsMonsterManager.start();
+	}
 	public void sekMonster(int p) {
 		monster.clear();
 		if(p ==1) {
 			int x1 = 0;
 			int y1 = 0;
-			for(int i =0 ;i<8;i++) {
+			for(int i =0 ;i<1;i++) {
 				monster.add(new Monster(this.battleStageGC,x1,y1,""));
 				x1 -=100;
 				y1 -=100;
@@ -147,7 +183,7 @@ public class BattleStage extends VBox{
 		else if(p==2) {
 			int x2 = util.reference.WIDTH;
 			int y2 = 0;
-			for(int i =0 ;i<8;i++) {
+			for(int i =0 ;i<1;i++) {
 				monster.add(new Monster2(this.battleStageGC,x2,y2,""));
 				x2 +=100;
 				y2 -=100;

@@ -1,7 +1,7 @@
 package application;
 
 public class Time {
-		private static int currentTime;
+		public static int currentTime;
 		private static Thread timerThread;
 		public Time() {
 			// TODO Auto-generated constructor stub
@@ -9,7 +9,7 @@ public class Time {
 			this.timerThread = new Thread(() -> {
 				while(true){
 					try {
-						Thread.sleep(1);
+						Thread.sleep(1000);
 						currentTime++;
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
