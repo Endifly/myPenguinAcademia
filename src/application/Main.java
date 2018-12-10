@@ -56,6 +56,7 @@ public class Main extends Application{
 		
 		//stage setting
 		primaryStage.setScene(menuScene);
+		primaryStage.setTitle("My penguin Academia");
 		primaryStage.setResizable(false);
 		primaryStage.show();
 		

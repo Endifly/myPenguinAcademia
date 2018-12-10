@@ -21,7 +21,9 @@ public class EventManager {
 	private static Scene BATTLESCENE;
 	private static Scene MENUSCENE;
 	private static Scene PAUSESCENE;
+	private static Scene SCORESCENE;
 	private StackPane rootBattleStage;
+	private Pane rootScoreStage;
 	private AudioClip sound;
 	
 	//detect all used key true if it was pressed , false for not.
@@ -33,6 +35,8 @@ public class EventManager {
 		this.MENUSCENE = menu;
 		this.BATTLESCENE = battle;
 		this.PAUSESCENE = pause;
+		//this.newScoreScene();
+		this.newScoreScene();
 		//click = this.LoadMedia("click.mp3");
 		sound = new AudioClip(ClassLoader.getSystemResource("click.mp3").toString());
 	}
@@ -56,7 +60,6 @@ public class EventManager {
 						// TODO Auto-generated method stub
 						BattleStage.startBattleStage();
 						PRIMARY.setScene(BATTLESCENE);
-						PRIMARY.setTitle("BATTLE");
 						//BattleStage.startMonster();
 					}
 				});
@@ -92,7 +95,6 @@ public class EventManager {
 			if (event.getCode() == KeyCode.ESCAPE) {
 				BattleStage.pauseMonster();
 				PRIMARY.setScene(PAUSESCENE);
-				PRIMARY.setTitle("pause");
 			}
 		});
 		battle.setOnKeyReleased((KeyEvent event) -> {
@@ -112,7 +114,6 @@ public class EventManager {
 		pauseStageResume.setOnAction(e -> {
 			BattleStage.resumeMonster();
 			PRIMARY.setScene(BATTLESCENE);
-			PRIMARY.setTitle("Battle");
 		});
 	}
 	public void setPauseStageBacktoMenu(Button pauseStageBacktoMenu) {
@@ -120,7 +121,6 @@ public class EventManager {
 			BattleStage.restartBattleStage();
 			this.newBattleScene();
 			PRIMARY.setScene(MENUSCENE);
-			PRIMARY.setTitle("menu");
 		});
 	}
 	public void setPauseStageExit(Button pauseStageExit) {
@@ -137,7 +137,6 @@ public class EventManager {
 			this.newBattleScene();
 			BattleStage.startBattleStage();
 			PRIMARY.setScene(BATTLESCENE);
-			PRIMARY.setTitle("Battle");
 		});
 	}
 	
@@ -169,6 +168,37 @@ public class EventManager {
 		this.BATTLESCENE.getStylesheets().addAll(this.getClass().getResource("battle.css").toExternalForm());
 		this.setBattleKeyPress(BATTLESCENE);
 	}
-
+	public void newScoreScene() {
+		rootScoreStage = new Pane();
+		rootScoreStage.setId("scorePane");
+		ScoreStage scoreStage = new ScoreStage();
+		scoreStage.getBackToMenu().setOnAction(e -> {
+			BattleStage.restartBattleStage();
+			this.newBattleScene();
+			PRIMARY.setScene(MENUSCENE);
+		});
+		scoreStage.getRestart().setOnAction(e -> {
+			BattleStage.restartBattleStage();
+			this.newBattleScene();
+			BattleStage.startBattleStage();
+			PRIMARY.setScene(BATTLESCENE);
+		});
+		rootScoreStage.getChildren().addAll(scoreStage);
+		this.SCORESCENE = new Scene(rootScoreStage , util.reference.WIDTH , util.reference.HIGH);
+		this.SCORESCENE.getStylesheets().addAll(this.getClass().getResource("score.css").toExternalForm());
+	}
+	public static void dead() {
+		BattleStage.restartBattleStage();
+		UP = false;
+		DOWN = false;
+		RIGHT = false;
+		LEFT = false;
+		Z = false;
+		X = false;
+		C = false;
+		V = false;
+		PRIMARY.setScene(SCORESCENE);
+	}
+	
 	
 }

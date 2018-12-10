@@ -171,7 +171,16 @@ public class BattleStage extends VBox{
 							System.out.println(player1.getHp()/player1.getMaxHP());
 							HP.setProgress(player1.getHp()/100);
 							if (player1.getHp() <= 0) {
-								this.pauseMonster();
+								Platform.runLater(new Runnable() {
+									
+									@Override
+									public void run() {
+										// TODO Auto-generated method stub
+										ScoreStage.setScore(String.format("%d", forScore));
+										EventManager.dead();
+										//this.pauseMonster();
+									}
+								});
 							}
 						}
 						if (bulletsMonster.get(i).getK() < -80 || bulletsMonster.get(i).getK() > util.reference.HIGH-60 || bulletsMonster.get(i).isAt(player1)) {
