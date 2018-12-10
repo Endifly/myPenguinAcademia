@@ -73,12 +73,12 @@ public class BattleStage extends VBox{
 						Thread.sleep(100);
 						for (int i = monster.size()-1 ; i >= 0 ; i--) {
 							//System.out.println(i);
-							if (Main.timer.currentTime%3 == 0 && !fired) {
+							if (Main.timer.currentTime%3 == 0 && !monster.get(i).fired) {
 								monster.get(i).fire();
-								fired = true;
+								monster.get(i).fired = true;
 							}
 							if (Main.timer.currentTime%3 != 0) {
-								fired = false;
+								monster.get(i).fired = false;
 							}
 							monster.get(i).draw();
 							//monster.get(i).fire();
@@ -185,7 +185,7 @@ public class BattleStage extends VBox{
 		if(p ==1) {
 			int x1 = 0;
 			int y1 = 0;
-			for(int i =0 ;i<1;i++) {
+			for(int i =0 ;i<8;i++) {
 				monster.add(new Monster(this.battleStageGC,x1,y1,""));
 				x1 -=100;
 				y1 -=100;
@@ -194,7 +194,7 @@ public class BattleStage extends VBox{
 		else if(p==2) {
 			int x2 = util.reference.WIDTH;
 			int y2 = 0;
-			for(int i =0 ;i<1;i++) {
+			for(int i =0 ;i<8;i++) {
 				monster.add(new Monster2(this.battleStageGC,x2,y2,""));
 				x2 +=100;
 				y2 -=100;

@@ -21,6 +21,7 @@ public class Monster implements fireable,dieable{
 	protected GraphicsContext monsterGC;
 	protected int startTimeAt;
 	private Thread control;
+	public boolean fired = false;
 	
 	public Monster(GraphicsContext gc,int h,int k,String imagepath) {
 		this.hp = 20;
