@@ -5,11 +5,11 @@ import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Monster2 extends Monster{
-	public Monster2(GraphicsContext gc,int h,int k,String imagepath) {
+public class Monster3 extends Monster{
+	public Monster3(GraphicsContext gc,int h,int k,String imagepath) {
 		super(gc,h,k,imagepath);
 	}
-	public Monster2(int hp,int atk,String imagepath,int score,int m,int c,double speedMon,double speed,GraphicsContext monsterGC) {
+	public Monster3(int hp,int atk,String imagepath,int score,int m,int c,double speedMon,double speed,GraphicsContext monsterGC) {
 		super(hp,atk,"Mon2.jpg",score,m,c,speedMon,speed,monsterGC);
 	}
 	private Image LoadImage(String imagePath) {
@@ -21,8 +21,8 @@ public class Monster2 extends Monster{
 			public void run() {
 				// TODO Auto-generated method stub
 					monsterGC.clearRect(h, k, 50, 50);
-					k = k+10;
-					h = h-10;
+					k = k;
+					h = h+15;
 					monsterGC.drawImage(this.LoadImage("Mon2.jpg"), h, k);
 			}
 			private Image LoadImage(String imagePath) {
@@ -35,3 +35,4 @@ public class Monster2 extends Monster{
 		new bulletMonster("owen", 80, "bulletMons2.jpg", 1, 0, this, monsterGC);
 	}
 }
+

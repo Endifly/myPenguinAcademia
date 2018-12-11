@@ -27,7 +27,7 @@ public class Monster implements fireable,dieable{
 	public Monster(GraphicsContext gc,int h,int k,String imagepath) {
 		this.hp = 20;
 		this.atk = 1;
-		this.imagepath = "bullet-transperent.jpg";
+		this.imagepath = "Mon1.jpg";
 		this.score = 100;
 		monsterGC = gc;
 		this.h = h;
@@ -178,7 +178,7 @@ public class Monster implements fireable,dieable{
 	@Override
 	public void fire() {
 		// TODO Auto-generated method stub
-		new bulletMonster("owen", 80, "bullet-monster1.jpg", 1, 0, this, monsterGC);
+		new bulletMonster("owen", 80, "bulletMons1.jpg", 1, 0, this, monsterGC);
 	}
 	public boolean isAt(Penguin e) {
 		int deltaX = e.getCenterX()-this.getCenterX();

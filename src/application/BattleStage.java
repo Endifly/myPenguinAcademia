@@ -134,7 +134,7 @@ public class BattleStage extends VBox{
 			try {
 				while (true) {
 					Random rand = new Random();
-					int n = rand.nextInt(2)+1;
+					int n = rand.nextInt(5)+1;;
 					for(Monster e:monster) {
 						e.remove();
 					}
@@ -253,33 +253,23 @@ public class BattleStage extends VBox{
 		
 			//System.out.println(x);
 		}
+		
 		else if(p==3) {
-			int x2 = util.reference.WIDTH;
-			int y2 = 0;
-			Random rand = new Random();
-			int n = rand.nextInt(200)+1;
-			while(n<50) {
-				n = rand.nextInt(200)+1;
-			}
+			int x2 = 0;
+			int y2 = 100;
 			for(int i =0 ;i<8;i++) {
-				monster.add(new Monster(this.battleStageGC,x2,y2,""));
-				x2 +=n;
-				y2 -=100;
+				monster.add(new Monster3(this.battleStageGC,x2,y2,""));
+				x2 -=100;
 			}
 		
+			//System.out.println(x);
 		}
-		else if(p==2) {
-			int x2 = 0;
-			int y2 = 0;
-			Random rand = new Random();
-			int n = rand.nextInt(200)+1;
-			while(n<50) {
-				n = rand.nextInt(200)+1;
-			}
+		else if(p==4) {
+			int x2 = util.reference.WIDTH;
+			int y2 = 100;
 			for(int i =0 ;i<8;i++) {
-				monster.add(new Monster2(this.battleStageGC,x2,y2,""));
-				x2 -=n;
-				y2 -=100;
+				monster.add(new Monster4(this.battleStageGC,x2,y2,""));
+				x2 +=100;
 			}
 		
 			//System.out.println(x);
