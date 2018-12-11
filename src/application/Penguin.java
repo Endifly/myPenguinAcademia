@@ -15,17 +15,17 @@ public class Penguin extends StackPane implements controlable , fireable, dieabl
 	private int level;
 	private double maxHP;
 	private double hp;
-	private int h = 600 , k = 500;
+	protected int h = 600 , k = 500;
 	private int speedX , speedY;
 	private Scene battleControl;
 	private Bullet bullet;
 	private String name;
 	private String bulletType;
-	private GraphicsContext penguinPane;
+	protected GraphicsContext penguinPane;
 	private static Thread control;
 	private static boolean controlRun = true;
 	private boolean zTriggerd = false , xTriggerd = false;;
-	private int r;
+	protected int r;
 	
 	public Penguin(GraphicsContext gc) {
 		super();

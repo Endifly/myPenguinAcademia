@@ -134,6 +134,28 @@ public class Bullet {
 			return false;
 		}
 	}
+	public boolean isAt(Barrier1 e) {
+		int deltaX = e.getCenterX()-this.getCenterX();
+		int deltaY = e.getCenterY()-this.getCenterY();
+		int deltaR = e.getR()+this.getR();
+		System.out.println("barrier check");
+		System.out.println(e.getH());
+		System.out.println(e.getCenterX());
+		System.out.println(e.getK());
+		System.out.println(e.getCenterY());
+		System.out.println(this.getH());
+		System.out.println(this.getCenterX());
+		System.out.println(this.getK());
+		System.out.println(this.getCenterY());
+		System.out.println(deltaR);
+		System.out.println(Math.sqrt((deltaX*deltaX+deltaY*deltaY)));
+		if (Math.sqrt((deltaX*deltaX+deltaY*deltaY)) < Math.abs(deltaR)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	public int getCenterX() {
 		return this.h+r;
 	}

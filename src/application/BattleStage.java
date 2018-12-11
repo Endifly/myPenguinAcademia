@@ -39,6 +39,7 @@ public class BattleStage extends VBox{
 	private GraphicsContext battleStageGC;
 	private int startAt;
 	private boolean fired = false;
+	private Barrier1 barrier;
 	
 	public BattleStage() {
 		super(10);
@@ -59,6 +60,7 @@ public class BattleStage extends VBox{
 		battleStageCanvas = new Canvas(util.reference.WIDTH, util.reference.HIGH-60);
 		battleStageGC = battleStageCanvas.getGraphicsContext2D();
 		player1 = new Penguin(battleStageGC);
+		//barrier = new Barrier1(battleStageGC, player1);
 		
 		this.bulletsManagerThread();
 		this.bulletsMonsterManagerThread();
@@ -143,6 +145,25 @@ public class BattleStage extends VBox{
 						Thread.sleep(100);
 						for (int i = monster.size()-1 ; i >= 0 ; i--) {
 							//System.out.println(i);
+							if (monster.get(i).isAt(player1)) {
+								if (player1.getHp()-monster.get(i).getDamage() <= 0) player1.setHP(0);
+								else player1.setHP(player1.getHp()-monster.get(i).getDamage());
+								System.out.println(player1.getHp()/player1.getMaxHP());
+								HP.setProgress(player1.getHp()/100);
+								if (player1.getHp() <= 0) {
+									Platform.runLater(new Runnable() {
+										
+										@Override
+										public void run() {
+											// TODO Auto-generated method stub
+											ScoreStage.setScore(String.format("%d", forScore));
+											EventManager.dead();
+											//this.pauseMonster();
+										}
+									});
+								}
+								
+							}
 							if (Main.timer.currentTime%3 == 0 && !monster.get(i).fired) {
 								monster.get(i).fire();
 								monster.get(i).fired = true;
@@ -172,7 +193,7 @@ public class BattleStage extends VBox{
 						if (bulletsMonster.get(i).isAt(player1)) {
 							if (player1.getHp()-bulletsMonster.get(i).getDamage() <= 0) player1.setHP(0);
 							else player1.setHP(player1.getHp()-bulletsMonster.get(i).getDamage());
-							System.out.println(player1.getHp()/player1.getMaxHP());
+							//System.out.println(player1.getHp()/player1.getMaxHP());
 							HP.setProgress(player1.getHp()/100);
 							if (player1.getHp() <= 0) {
 								Platform.runLater(new Runnable() {
@@ -187,7 +208,7 @@ public class BattleStage extends VBox{
 								});
 							}
 						}
-						if (bulletsMonster.get(i).getK() < -80 || bulletsMonster.get(i).getK() > util.reference.HIGH-60 || bulletsMonster.get(i).isAt(player1)) {
+						if (bulletsMonster.get(i).getK() < -80 || bulletsMonster.get(i).getK() > util.reference.HIGH-60 || bulletsMonster.get(i).isAt(player1) ) {
 							//System.out.println("removed");
 							bulletsMonster.get(i).remove();
 							bulletsMonster.remove(i);

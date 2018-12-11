@@ -22,6 +22,7 @@ public class Monster implements fireable,dieable{
 	protected int startTimeAt;
 	private Thread control;
 	public boolean fired = false;
+	protected int damage = 10;
 	
 	public Monster(GraphicsContext gc,int h,int k,String imagepath) {
 		this.hp = 20;
@@ -178,5 +179,31 @@ public class Monster implements fireable,dieable{
 	public void fire() {
 		// TODO Auto-generated method stub
 		new bulletMonster("owen", 80, "bullet-monster1.jpg", 1, 0, this, monsterGC);
+	}
+	public boolean isAt(Penguin e) {
+		int deltaX = e.getCenterX()-this.getCenterX();
+		int deltaY = e.getCenterY()-this.getCenterY();
+		int deltaR = e.getR()+this.getR();
+		/*System.out.println("debug-------------------------------");
+		System.out.println(e.getH());
+		System.out.println(e.getCenterX());
+		System.out.println(e.getK());
+		System.out.println(e.getCenterY());
+		System.out.println(this.getH());
+		System.out.println(this.getCenterX());
+		System.out.println(this.getK());
+		System.out.println(this.getCenterY());
+		System.out.println(deltaR);
+		System.out.println(Math.sqrt((deltaX*deltaX+deltaY*deltaY)));
+		System.out.println("debug-------------------------------");*/
+		if (Math.sqrt((deltaX*deltaX+deltaY*deltaY)) < Math.abs(deltaR)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	public int getDamage() {
+		return this.damage;
 	}
 }
